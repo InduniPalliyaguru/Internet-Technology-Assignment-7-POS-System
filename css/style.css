@@ -1,0 +1,14 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+header img {
+    width: 20%;
+}
+
+.custom-navbar{
+background-color: #0F1D24;
+}
+
+.nav-link {
+    color: white;
+}
