@@ -34,3 +34,23 @@ background-color: #0F1D24;
 #logout-button:active {
     color: white;
 }
+
+.form-label {
+    font-size: 110%;
+}
+
+.form-control {
+    background-color: transparent;
+    border: 1px solid black;
+}
+
+#registrationForm {
+    background-color: #F8F9FA;
+    padding: 5%;
+    border-radius: 4%;
+}
+
+#form1 {
+    background-color: transparent;
+    border: 1px solid black;
+}
