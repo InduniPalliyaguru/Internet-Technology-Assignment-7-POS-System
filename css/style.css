@@ -104,3 +104,58 @@ background-color: #0F1D24;
 #btnUpdateCustomerForm:hover {
     background-color: rgba(255, 166, 0, 0.682);
 }
+
+/* Item Page */
+
+#form2 {
+    background-color: transparent;
+    border: 1px solid black;
+}
+
+#itemRegistrationForm {
+    background-color: rgb(219, 233, 240, 0.6);
+    padding: 5%;
+    border-radius: 4%;
+}
+
+#btnSaveItem {
+    background-color: green;
+    border: none;
+    transition: background-color, 0.2s;
+}
+
+#btnSaveItem:hover {
+    background-color: rgba(0, 128, 0, 0.5);
+}
+
+#btnSaveItem:active {
+    background-color: green;
+}
+
+#btnUpdateItem {
+    background-color: #ffa500;
+    border: none;
+    color: black;
+    transition: background-color, 0.2s;
+}
+
+#btnUpdateItem:hover {
+    background-color: rgba(255, 166, 0, 0.682);
+}
+
+#itemUpdateForm {
+    background-color: rgb(219, 233, 240, 0.6);
+    padding: 5%;
+    border-radius: 4%;
+}
+
+#btnUpdateItemForm {
+    background-color: orange;
+    border: none;
+    color: black;
+    transition: background-color, 0.2s;
+}
+
+#btnUpdateItemForm:hover {
+    background-color: rgba(255, 166, 0, 0.682);
+}

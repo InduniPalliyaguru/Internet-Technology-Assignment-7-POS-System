@@ -141,7 +141,7 @@
                 <div class="col">
                     <!-- Search Bar -->
                     <div class="d-flex justify-content-between">
-                        <div class="col-md-6 col-lg-4 col-xl-4 mb-3">
+                        <div class="col-md-6 col-lg-4 col-xl-4 mb-3 ">
                         <div class="input-group gap-2">
                             <div class="form-outline flex-fill">
                                 <input type="search" id="form1" class="form-control"
@@ -158,7 +158,7 @@
                     <button type="button" class="btn btn-primary mb-3" style="background-color: #008000; border: none;" data-bs-toggle="modal"
                         data-bs-target="#customerSaveModal">
                         <i class="fa-solid fa-user-plus" style="color: rgb(255, 255, 255);"></i>
-                        Add customer
+                        Add Customer
                     </button>
                     </div>
 
@@ -211,7 +211,76 @@
 
         <section class="tab-pane fade" id="pills-item" role="tabpanel" aria-labelledby="pills-item-tab" tabindex="0">
 
-            itemPage
+            <div class="row p-4 d-flex flex-column" style="background-color: #DBE9F0;">
+
+                <div class="col">
+                    <!-- Search Bar -->
+                    <div class="d-flex justify-content-between">
+                        <div class="col-md-6 col-lg-4 col-xl-4 mb-3 ">
+                        <div class="input-group gap-2">
+                            <div class="form-outline flex-fill">
+                                <input type="search" id="form2" class="form-control"
+                                    placeholder="Search Item by ID" />
+                            </div>
+                            <button type="button" id="itemSearchButton" class="btn btn-primary bg-dark border-dark"
+                                data-db-ripple-init>
+                                Search
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Button trigger modal Add Item -->
+                    <button type="button" class="btn btn-primary mb-3" style="background-color: #008000; border: none;" data-bs-toggle="modal"
+                        data-bs-target="#itemSaveModal">
+                        <i class="fa-solid fa-plus" style="color: rgb(255, 255, 255);"></i>
+                        Add Item
+                    </button>
+                    </div>
+
+                    <!-- Customer Table -->
+                    <div class="table-responsive">
+                        <table class="table table-light table-hover" id="itemTable">
+                            <thead style="background-color: #F8F9FA; color: black;">
+                                <tr>
+                                    <th class="w-25">Item Code</th>
+                                    <th class="w-25">Item Name</th>
+                                    <th class="w-25">Quantity</th>
+                                    <th class="w-15">Unit Price</th>
+                                    <th class="w-10">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="itemTableBody">
+                                <tr>
+                                    <td>I001</td>
+                                    <td>Ice-cream</td>
+                                    <td>100</td>
+                                    <td>150</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary fs-6 p-1" id="btnUpdateItem" data-bs-toggle="modal"
+                                            data-bs-target="#itemUpdateModal"> Update </button>
+
+                                        <button type="button" id="btnDeleteItem"
+                                            class="btn btn-sm btn-danger fs-6 rounded-3"> Delete </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>I002</td>
+                                    <td>Chocolate</td>
+                                    <td>50</td>
+                                    <td>200</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary fs-6 p-1" id="btnUpdateItem" data-bs-toggle="modal"
+                                            data-bs-target="#itemUpdateModal"> Update </button>
+
+                                        <button type="button" id="btnDeleteItem"
+                                            class="btn btn-sm btn-danger fs-6 rounded-3"> Delete </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
         </section>
 
@@ -312,6 +381,102 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" id="btnUpdateCustomerForm" class="btn btn-success col-4">Update Customer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Item Modal -->
+        <div class="modal fade" id="itemSaveModal" tabindex="-1" aria-labelledby="itemSaveModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="color: white;">
+                        <h1 class="modal-title fs-5" id="itemSaveModalLabel">Add New Item</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: white;"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="itemRegistrationForm" novalidate>
+                            <div class="mb-3">
+                                <label for="itemId" class="form-label">Item Code</label>
+                                <input type="text" id="itemId" name="itemId" class="form-control"
+                                    placeholder="I00-001" required>
+                                <span class="form-text text-danger" id="itemIdError"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="itemName" class="form-label">Item Name</label>
+                                <input type="text" id="itemName" name="itemName" class="form-control"
+                                    placeholder="Ice-cream" required>
+                                <span class="form-text text-danger" id="itemNameError"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="quantity" class="form-label">Quantity</label>
+                                <input type="text" id="quantity" name="quantity" class="form-control"
+                                    placeholder="100" required>
+                                <span class="form-text text-danger" id="quantityError"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="unitPrice" class="form-label">Unit Price</label>
+                                <input type="number" id="unitPrice" name="unitPrice" class="form-control"
+                                    placeholder="150.00" required>
+                                <span class="form-text text-danger" id="unitPriceError"></span>
+                            </div>
+                            <div class="btn-container justify-content-center">
+                                <!-- <button type="submit" id="btnSaveCustomer"
+                                                class="btn btn-success col-4">Save</button> -->
+                                <button type="reset" id="btnRestItemForm" class="btn btn-secondary col-4">Clear
+                                    All</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="btnSaveItem" class="btn btn-success col-4">Save Item</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Update Item Modal -->
+        <div class="modal fade" id="itemUpdateModal" tabindex="-1" aria-labelledby="itemUpdateModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="color: white;">
+                        <h1 class="modal-title fs-5" id="itemUpdateModalLabel">Update Item</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: white;"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="itemUpdateForm" novalidate>
+                            <div class="mb-3">
+                                <label for="updateItemId" class="form-label">Item Code</label>
+                                <input type="text" id="updateItemId" name="itemId" class="form-control"
+                                    placeholder="I00-001" required>
+                                <span class="form-text text-danger" id="updateItemIdError"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="updateItemName" class="form-label">Item Name</label>
+                                <input type="text" id="updateItemName" name="itemName" class="form-control"
+                                    placeholder="Ice-cream" required>
+                                <span class="form-text text-danger" id="updateItemNameError"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="updateItemQuantity" class="form-label">Quantity</label>
+                                <input type="text" id="updateItemQuantity" name="itemQuantity" class="form-control"
+                                    placeholder="100" required>
+                                <span class="form-text text-danger" id="updateItemQuantityError"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="updateUnitPrice" class="form-label">Unit Price</label>
+                                <input type="number" id="updateUnitPrice" name="itemUnitPrice" class="form-control"
+                                    placeholder="150.00" required>
+                                <span class="form-text text-danger" id="updateUnitPriceError"></span>
+                            </div>
+                            <div class="btn-container justify-content-center">
+                                <button type="reset" id="btnRestFormUpdateItem" class="btn btn-secondary col-4">Clear
+                                    All</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="btnUpdateItemForm" class="btn btn-success col-4">Update Item</button>
                     </div>
                 </div>
             </div>
