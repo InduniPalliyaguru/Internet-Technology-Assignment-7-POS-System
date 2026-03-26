@@ -136,48 +136,12 @@
 
         <section class="tab-pane fade" id="pills-customer" role="tabpanel" aria-labelledby="pills-customer-tab"
             tabindex="0">
-            <div class="row p-4 justify-content-evenly" style="background-color: #DBE9F0;">
+            <div class="row p-4 d-flex flex-column" style="background-color: #DBE9F0;">
 
-                <!-- CustomerForm -->
-                <div class="col-md-5">
-                    <h3 class="mb-2 fw-bold">Customer Registration</h3>
-                    <form id="registrationForm" novalidate>
-                        <div class="mb-3">
-                            <label for="customerId" class="form-label">Customer ID</label>
-                            <input type="text" id="customerId" name="customerId" class="form-control"
-                                placeholder="C00-001" required>
-                            <span class="form-text text-danger" id="customerIdError"></span>
-                        </div>
-                        <div class="mb-3">
-                            <label for="customerName" class="form-label">Customer Name</label>
-                            <input type="text" id="customerName" name="customerName" class="form-control"
-                                placeholder="John Doe" required>
-                            <span class="form-text text-danger" id="customerNameError"></span>
-                        </div>
-                        <div class="mb-3">
-                            <label for="customerAddress" class="form-label">Customer Address</label>
-                            <input type="text" id="customerAddress" name="customerAddress" class="form-control"
-                                placeholder="Colombo" required>
-                            <span class="form-text text-danger" id="customerAddressError"></span>
-                        </div>
-                        <div class="mb-3">
-                            <label for="customerSalary" class="form-label">Customer Salary</label>
-                            <input type="number" id="customerSalary" name="customerSalary" class="form-control"
-                                placeholder="50000.00" required>
-                            <span class="form-text text-danger" id="customerSalaryError"></span>
-                        </div>
-                        <div class="btn-container row gap-4 justify-content-center">
-                            <button type="submit" id="btnSaveCustomer" class="btn btn-success col-4">Save</button>
-                            <button type="button" id="btnUpdateCustomer" class="btn btn-primary col-4">Update</button>
-                            <button type="button" id="btnDeleteCustomer" class="btn btn-danger col-4">Delete</button>
-                            <button type="reset" id="btnRestForm" class="btn btn-secondary col-4">Clear All</button>
-                        </div>
-                    </form>
-
-                </div>
-
-                <div class="col-md-6">
-                    <div class="mb-3">
+                <div class="col">
+                    <!-- Search Bar -->
+                    <div class="d-flex justify-content-between">
+                        <div class="col-md-6 col-lg-4 col-xl-4 mb-3">
                         <div class="input-group gap-2">
                             <div class="form-outline flex-fill">
                                 <input type="search" id="form1" class="form-control"
@@ -190,6 +154,14 @@
                         </div>
                     </div>
 
+                    <!-- Button trigger modal Add Customer -->
+                    <button type="button" class="btn btn-primary mb-3" style="background-color: #008000; border: none;" data-bs-toggle="modal"
+                        data-bs-target="#customerSaveModal">
+                        <i class="fa-solid fa-user-plus" style="color: rgb(255, 255, 255);"></i>
+                        Add customer
+                    </button>
+                    </div>
+
                     <!-- Customer Table -->
                     <div class="table-responsive">
                         <table class="table table-light table-hover" id="customerTable">
@@ -198,10 +170,37 @@
                                     <th class="w-25">Customer ID</th>
                                     <th class="w-25">Name</th>
                                     <th class="w-25">Address</th>
-                                    <th class="w-25">Salary</th>
+                                    <th class="w-15">Salary</th>
+                                    <th class="w-10">Actions</th>
                                 </tr>
                             </thead>
                             <tbody id="customerTableBody">
+                                <tr>
+                                    <td>C001</td>
+                                    <td>John</td>
+                                    <td>Colombo</td>
+                                    <td>50000</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary fs-6 p-1" id="btnUpdateCustomer" data-bs-toggle="modal"
+                                            data-bs-target="#customerUpdateModal"> Update </button>
+
+                                        <button type="button" id="btnDeleteCustomer"
+                                            class="btn btn-sm btn-danger fs-6 rounded-3"> Delete </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>C002</td>
+                                    <td>Sanduni</td>
+                                    <td>Galle</td>
+                                    <td>40000</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary fs-6 p-1" id="btnUpdateCustomer" data-bs-toggle="modal"
+                                            data-bs-target="#customerUpdateModal"> Update </button>
+
+                                        <button type="button" id="btnDeleteCustomer"
+                                            class="btn btn-sm btn-danger fs-6 rounded-3"> Delete </button>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -221,6 +220,102 @@
             orderPage
 
         </section>
+
+        <!-- Add Customer Modal -->
+        <div class="modal fade" id="customerSaveModal" tabindex="-1" aria-labelledby="customerSaveModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="color: white;">
+                        <h1 class="modal-title fs-5" id="customerSaveModalLabel">Add New Customer</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: white;"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="registrationForm" novalidate>
+                            <div class="mb-3">
+                                <label for="customerId" class="form-label">Customer ID</label>
+                                <input type="text" id="customerId" name="customerId" class="form-control"
+                                    placeholder="C00-001" required>
+                                <span class="form-text text-danger" id="customerIdError"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="customerName" class="form-label">Customer Name</label>
+                                <input type="text" id="customerName" name="customerName" class="form-control"
+                                    placeholder="John Doe" required>
+                                <span class="form-text text-danger" id="customerNameError"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="customerAddress" class="form-label">Customer Address</label>
+                                <input type="text" id="customerAddress" name="customerAddress" class="form-control"
+                                    placeholder="Colombo" required>
+                                <span class="form-text text-danger" id="customerAddressError"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="customerSalary" class="form-label">Customer Salary</label>
+                                <input type="number" id="customerSalary" name="customerSalary" class="form-control"
+                                    placeholder="50000.00" required>
+                                <span class="form-text text-danger" id="customerSalaryError"></span>
+                            </div>
+                            <div class="btn-container justify-content-center">
+                                <!-- <button type="submit" id="btnSaveCustomer"
+                                                class="btn btn-success col-4">Save</button> -->
+                                <button type="reset" id="btnRestForm" class="btn btn-secondary col-4">Clear
+                                    All</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="btnSaveCustomer" class="btn btn-success col-4">Save Customer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Update Customer Modal -->
+        <div class="modal fade" id="customerUpdateModal" tabindex="-1" aria-labelledby="customerUpdateModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="color: white;">
+                        <h1 class="modal-title fs-5" id="customerUpdateModalLabel">Update Customer</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: white;"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="updateForm" novalidate>
+                            <div class="mb-3">
+                                <label for="updateCustomerId" class="form-label">Customer ID</label>
+                                <input type="text" id="updateCustomerId" name="customerId" class="form-control"
+                                    placeholder="C00-001" required>
+                                <span class="form-text text-danger" id="updateCustomerIdError"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="updateCustomerName" class="form-label">Customer Name</label>
+                                <input type="text" id="updateCustomerName" name="customerName" class="form-control"
+                                    placeholder="John Doe" required>
+                                <span class="form-text text-danger" id="updateCustomerNameError"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="updateCustomerAddress" class="form-label">Customer Address</label>
+                                <input type="text" id="updateCustomerAddress" name="customerAddress" class="form-control"
+                                    placeholder="Colombo" required>
+                                <span class="form-text text-danger" id="updateCustomerAddressError"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="updateCustomerSalary" class="form-label">Customer Salary</label>
+                                <input type="number" id="updateCustomerSalary" name="customerSalary" class="form-control"
+                                    placeholder="50000.00" required>
+                                <span class="form-text text-danger" id="updateCustomerSalaryError"></span>
+                            </div>
+                            <div class="btn-container justify-content-center">
+                                <button type="reset" id="btnRestFormUpdate" class="btn btn-secondary col-4">Clear
+                                    All</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="btnUpdateCustomerForm" class="btn btn-success col-4">Update Customer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer class="footer">
@@ -228,11 +323,6 @@
             <span>&copy; All Rights Reserved | Induni Palliyaguru</span>
         </div>
     </footer>
-
-
-
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
