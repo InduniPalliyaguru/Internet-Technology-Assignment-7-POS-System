@@ -12,8 +12,8 @@ header img {
     width: 20%;
 }
 
-.custom-navbar{
-background-color: #0F1D24;
+.custom-navbar {
+    background-color: #0F1D24;
 }
 
 .nav-link {
@@ -56,11 +56,12 @@ background-color: #0F1D24;
 }
 
 .modal-content {
-    background: rgb(219, 233, 240, 0.2); /* transparent */
+    background: rgb(219, 233, 240, 0.2);
+    /* transparent */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(15px);
     border-radius: 15px;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 #btnSaveCustomer {
@@ -182,4 +183,31 @@ background-color: #0F1D24;
 
 #btnUpdateOrderDetails:hover {
     background-color: rgba(255, 166, 0, 0.682);
+}
+
+/* Login */
+
+.login-page {
+    background: radial-gradient(circle, rgba(146, 189, 211, 1) 0%, rgba(109, 168, 197, 1) 25%, rgba(73, 146, 182, 1) 50%, rgba(58, 117, 146, 1) 75%, rgba(44, 87, 109, 1) 100%);
+}
+
+#login {
+    border-radius: 12%;
+    background-color: rgb(255, 255, 255, 0.4);
+    border: 3px solid rgb(255, 255, 255, 0.4);
+}
+
+#loginButton {
+    width: 100%;
+    transition: 0.2;
+    background-color: black;
+    border: none;
+}
+
+#loginButton:hover {
+    background-color: rgb(47, 47, 47);
+}
+
+#loginButton:active {
+    background-color: rgb(0, 0, 0);
 }

@@ -13,6 +13,38 @@
 
 <body>
 
+    <div class="login-page p-5">
+
+        <div class="container col-4 p-5 mt-5 mb-5" id="login">
+            <div class="d-flex justify-content-center">
+                <img src="assets/logo.png" alt="logo" width="25%">
+            </div>
+            <div class="d-flex flex-column align-items-center">
+                <h3 style="font-weight: 700;">Welcome Back</h3>
+                <p style="color: #787575;">Please enter your detail to sign in</p>
+            </div>
+
+            <form id="loginForm" class="mt-5">
+                <div class="mb-3">
+                    <label for="username" class="form-label" style="font-weight: 700;">Username</label>
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Enter Username"
+                        required>
+                    <span class="form-text text-danger" id="usernameError"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label" style="font-weight: 700;">Password</label>
+                    <input type="text" id="password" name="password" class="form-control" placeholder="Enter Password"
+                        required>
+                    <span class="form-text text-danger" id="passwordError"></span>
+                </div>
+
+                <button type="button" id="loginButton" class="btn btn-primary" data-db-ripple-init>
+                    Login
+                </button>
+            </form>
+        </div>
+    </div>
+
     <div class="main-App">
         <header>
             <nav class="navbar navbar-expand-lg custom-navbar" style="padding: 0.2%;">
@@ -55,670 +87,684 @@
                 </div>
             </nav>
         </header>
-    </div>
 
-    <main class="tab-content" id="pills-tabContent">
-        
-        <section class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
-            tabindex="0">
-            <div class="container-fluid d-flex flex-column" style="background-color: #2C576D;">
-                <div class="d-flex justify-content-end p-3">
-                    <div class="logout d-flex">
-                        <button type="button" class="btn btn-dark d-flex align-items-center p-3 gap-2"
-                            id="logout-button">Logout
-                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                        </button>
+
+        <main class="tab-content" id="pills-tabContent">
+
+            <section class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
+                tabindex="0">
+                <div class="container-fluid d-flex flex-column" style="background-color: #2C576D;">
+                    <div class="d-flex justify-content-end p-3">
+                        <div class="logout d-flex">
+                            <button type="button" class="btn btn-dark d-flex align-items-center p-3 gap-2"
+                                id="logout-button">Logout
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            </button>
+                        </div>
                     </div>
-                </div>
 
-                <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2 g-5 pb-5 pt-5" style=" justify-content: center;">
-                    <div class="col-md-4 col-xl-5">
-                        <div class="card p-4 mb-4 shadow rounded-4">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center justify-content-around">
-                                    <i class="fa-solid fa-dollar-sign fa-4x" style="color: rgb(38, 139, 29);"></i>
-                                    <div>
-                                        <h5 class="card-title mb-0 fw-bold fa-2x">Total Sales</h5>
-                                        <p class="card-text fs-4" id="totalSalesMetric">$0.00</p>
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2 g-5 pb-5 pt-5"
+                        style=" justify-content: center;">
+                        <div class="col-md-4 col-xl-5">
+                            <div class="card p-4 mb-4 shadow rounded-4">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center justify-content-around">
+                                        <i class="fa-solid fa-dollar-sign fa-4x" style="color: rgb(38, 139, 29);"></i>
+                                        <div>
+                                            <h5 class="card-title mb-0 fw-bold fa-2x">Total Sales</h5>
+                                            <p class="card-text fs-4" id="totalSalesMetric">$0.00</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-xl-5">
+                            <div class="card p-4 mb-4 shadow rounded-4">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center justify-content-around">
+                                        <i class="fa-solid fa-cart-arrow-down fa-4x"
+                                            style="color: rgb(44, 61, 165);"></i>
+                                        <div>
+                                            <h5 class="card-title mb-0 fw-bold fa-2x">Total Orders</h5>
+                                            <p class="card-text fs-4" id="totalSalesMetric">0</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-xl-5">
+                            <div class="card p-4 mb-4 shadow rounded-4">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center justify-content-around">
+                                        <i class="fa-solid fa-users fa-4x" style="color: rgb(116, 192, 252);"></i>
+                                        <div>
+                                            <h5 class="card-title mb-0 fw-bold fa-2x">All Customers</h5>
+                                            <p class="card-text fs-4" id="totalSalesMetric">0</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 col-xl-5">
+                            <div class="card p-4 mb-4 shadow rounded-4">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center justify-content-around">
+                                        <i class="fa-solid fa-box-open fa-4x" style="color: rgb(255, 212, 60);"></i>
+                                        <div>
+                                            <h5 class="card-title mb-0 fw-bold fa-2x">Total Items</h5>
+                                            <p class="card-text fs-4" id="totalSalesMetric">0</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-md-4 col-xl-5">
-                        <div class="card p-4 mb-4 shadow rounded-4">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center justify-content-around">
-                                    <i class="fa-solid fa-cart-arrow-down fa-4x" style="color: rgb(44, 61, 165);"></i>
-                                    <div>
-                                        <h5 class="card-title mb-0 fw-bold fa-2x">Total Orders</h5>
-                                        <p class="card-text fs-4" id="totalSalesMetric">0</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-xl-5">
-                        <div class="card p-4 mb-4 shadow rounded-4">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center justify-content-around">
-                                    <i class="fa-solid fa-users fa-4x" style="color: rgb(116, 192, 252);"></i>
-                                    <div>
-                                        <h5 class="card-title mb-0 fw-bold fa-2x">All Customers</h5>
-                                        <p class="card-text fs-4" id="totalSalesMetric">0</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-xl-5">
-                        <div class="card p-4 mb-4 shadow rounded-4">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center justify-content-around">
-                                    <i class="fa-solid fa-box-open fa-4x" style="color: rgb(255, 212, 60);"></i>
-                                    <div>
-                                        <h5 class="card-title mb-0 fw-bold fa-2x">Total Items</h5>
-                                        <p class="card-text fs-4" id="totalSalesMetric">0</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-            </div>
 
 
 
 
-        </section>
+            </section>
 
-        <section class="tab-pane fade" id="pills-customer" role="tabpanel" aria-labelledby="pills-customer-tab"
-            tabindex="0">
-            <div class="row p-4 d-flex flex-column" style="background-color: #DBE9F0;">
+            <section class="tab-pane fade" id="pills-customer" role="tabpanel" aria-labelledby="pills-customer-tab"
+                tabindex="0">
+                <div class="row p-4 d-flex flex-column" style="background-color: #DBE9F0;">
 
-                <div class="col">
-                    <!-- Search Bar -->
-                    <div class="d-flex justify-content-between">
-                        <div class="col-md-6 col-lg-4 col-xl-4 mb-3 ">
-                            <div class="input-group gap-2">
-                                <div class="form-outline flex-fill">
-                                    <input type="search" id="form1" class="form-control"
-                                        placeholder="Search customer by ID" />
-                                </div>
-                                <button type="button" id="searchButton" class="btn btn-primary bg-dark border-dark"
-                                    data-db-ripple-init>
-                                    Search
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Button trigger modal Add Customer -->
-                        <button type="button" class="btn btn-primary mb-3"
-                            style="background-color: #008000; border: none;" data-bs-toggle="modal"
-                            data-bs-target="#customerSaveModal">
-                            <i class="fa-solid fa-user-plus" style="color: rgb(255, 255, 255);"></i>
-                            Add Customer
-                        </button>
-                    </div>
-
-                    <!-- Customer Table -->
-                    <div class="table-responsive">
-                        <table class="table table-light table-hover" id="customerTable">
-                            <thead style="background-color: #F8F9FA; color: black;">
-                                <tr>
-                                    <th class="w-25">Customer ID</th>
-                                    <th class="w-25">Name</th>
-                                    <th class="w-25">Address</th>
-                                    <th class="w-15">Salary</th>
-                                    <th class="w-10">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="customerTableBody">
-                                <tr>
-                                    <td>C001</td>
-                                    <td>John</td>
-                                    <td>Colombo</td>
-                                    <td>50000</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary fs-6 p-1" id="btnUpdateCustomer"
-                                            data-bs-toggle="modal" data-bs-target="#customerUpdateModal"> Update
-                                        </button>
-
-                                        <button type="button" id="btnDeleteCustomer"
-                                            class="btn btn-sm btn-danger fs-6 rounded-3"> Delete </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>C002</td>
-                                    <td>Sanduni</td>
-                                    <td>Galle</td>
-                                    <td>40000</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary fs-6 p-1" id="btnUpdateCustomer"
-                                            data-bs-toggle="modal" data-bs-target="#customerUpdateModal"> Update
-                                        </button>
-
-                                        <button type="button" id="btnDeleteCustomer"
-                                            class="btn btn-sm btn-danger fs-6 rounded-3"> Delete </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
-        <section class="tab-pane fade" id="pills-item" role="tabpanel" aria-labelledby="pills-item-tab" tabindex="0">
-
-            <div class="row p-4 d-flex flex-column" style="background-color: #DBE9F0;">
-
-                <div class="col">
-                    <!-- Search Bar -->
-                    <div class="d-flex justify-content-between">
-                        <div class="col-md-6 col-lg-4 col-xl-4 mb-3 ">
-                            <div class="input-group gap-2">
-                                <div class="form-outline flex-fill">
-                                    <input type="search" id="form2" class="form-control"
-                                        placeholder="Search Item by ID" />
-                                </div>
-                                <button type="button" id="itemSearchButton" class="btn btn-primary bg-dark border-dark"
-                                    data-db-ripple-init>
-                                    Search
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Button trigger modal Add Item -->
-                        <button type="button" class="btn btn-primary mb-3"
-                            style="background-color: #008000; border: none;" data-bs-toggle="modal"
-                            data-bs-target="#itemSaveModal">
-                            <i class="fa-solid fa-plus" style="color: rgb(255, 255, 255);"></i>
-                            Add Item
-                        </button>
-                    </div>
-
-                    <!-- Item Table -->
-                    <div class="table-responsive">
-                        <table class="table table-light table-hover" id="itemTable">
-                            <thead style="background-color: #F8F9FA; color: black;">
-                                <tr>
-                                    <th class="w-25">Item Code</th>
-                                    <th class="w-25">Item Name</th>
-                                    <th class="w-25">Quantity</th>
-                                    <th class="w-15">Unit Price</th>
-                                    <th class="w-10">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="itemTableBody">
-                                <tr>
-                                    <td>I001</td>
-                                    <td>Ice-cream</td>
-                                    <td>100</td>
-                                    <td>150</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary fs-6 p-1" id="btnUpdateItem"
-                                            data-bs-toggle="modal" data-bs-target="#itemUpdateModal"> Update </button>
-
-                                        <button type="button" id="btnDeleteItem"
-                                            class="btn btn-sm btn-danger fs-6 rounded-3"> Delete </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>I002</td>
-                                    <td>Chocolate</td>
-                                    <td>50</td>
-                                    <td>200</td>
-                                    <td>
-                                        <button type="button" class="btn btn-primary fs-6 p-1" id="btnUpdateItem"
-                                            data-bs-toggle="modal" data-bs-target="#itemUpdateModal"> Update </button>
-
-                                        <button type="button" id="btnDeleteItem"
-                                            class="btn btn-sm btn-danger fs-6 rounded-3"> Delete </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
-        <section class="tab-pane fade" id="pills-order" role="tabpanel" aria-labelledby="pills-order-tab" tabindex="0"
-            style="background-color: #3A7592;">
-            <div class="container py-4">
-                <!-- Place Order Card -->
-                <div class="card shadow-sm mb-4">
-                    <div class="card-header text-white" style="background-color: #1D3A49;">
-                        <h3 class="mb-0">
-                            <i class="fas fa-shopping-cart"></i> Place Order
-                        </h3>
-                    </div>
-                    <div class="card-body">
-                        <form id="orderForm" novalidate>
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="orderId" class="form-label">Order ID</label>
-                                    <input type="text" id="orderId" name="orderId" class="form-control"
-                                        placeholder="OID-001" readonly>
-                                    <div class="invalid-feedback" id="orderIdError"></div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="o_inputOrderDate" class="form-label">Order Date</label>
-                                    <input type="date" id="o_inputOrderDate" name="o_inputOrderDate"
-                                        class="form-control">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-4">
-                                    <label for="orderCustomerId" class="form-label">Customer ID</label>
-                                    <select class="form-select" id="orderCustomerId">
-                                        <option value="">Select Customer</option>
-                                        <option value="C00-001">C00-001</option>
-                                        <option value="C00-002">C00-002</option>
-                                        <option value="C00-003">C00-003</option>
-                                    </select>
-                                    <div class="invalid-feedback" id="orderCustomerIdError"></div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="orderCustomerName" class="form-label">Customer Name</label>
-                                    <input type="text" id="orderCustomerName" name="orderCustomerName"
-                                        class="form-control" placeholder="Customer Name" readonly>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="orderCustomerAddress" class="form-label">Customer Address</label>
-                                    <input type="text" id="orderCustomerAddress" name="orderCustomerAddress"
-                                        class="form-control" placeholder="Customer Address" readonly>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row mb-3 align-items-end">
-                                <div class="col-md-4">
-                                    <label for="orderItemCode" class="form-label">Item Code</label>
-                                    <select class="form-select" id="orderItemCode">
-                                        <option value="">Select Item</option>
-                                        <option value="I00-001">I00-001</option>
-                                        <option value="I00-002">I00-002</option>
-                                        <option value="I00-003">I00-003</option>
-                                    </select>
-                                    <div class="invalid-feedback" id="orderItemCodeError"></div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="orderItemName" class="form-label">Item Name</label>
-                                    <input type="text" id="orderItemName" name="orderItemName" class="form-control"
-                                        placeholder="Item Name" readonly>
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="orderItemQty" class="form-label">Available Qty</label>
-                                    <input type="number" id="orderItemQty" name="orderItemQty" class="form-control"
-                                        placeholder="Qty" readonly>
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="orderItemPrice" class="form-label">Unit Price</label>
-                                    <input type="number" id="orderItemPrice" name="orderItemPrice" class="form-control"
-                                        placeholder="Price" readonly>
-                                </div>
-                            </div>
-                            <div class="row mb-3 align-items-end">
-                                <div class="col-md-4">
-                                    <label for="orderQty" class="form-label">Ordered Qty</label>
-                                    <input type="number" id="orderQty" name="orderQty" class="form-control"
-                                        placeholder="Enter Qty" required>
-                                    <span class="form-text text-danger" id="itemQtyError"></span>
-                                </div>
-                                <div class="col-md-2">
-                                    <button type="button" id="btnAddToCart" class="btn btn-warning w-90 mt-4 rounded-3">
-                                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    <div class="col">
+                        <!-- Search Bar -->
+                        <div class="d-flex justify-content-between">
+                            <div class="col-md-6 col-lg-4 col-xl-4 mb-3 ">
+                                <div class="input-group gap-2">
+                                    <div class="form-outline flex-fill">
+                                        <input type="search" id="form1" class="form-control"
+                                            placeholder="Search customer by ID" />
+                                    </div>
+                                    <button type="button" id="searchButton" class="btn btn-primary bg-dark border-dark"
+                                        data-db-ripple-init>
+                                        Search
                                     </button>
                                 </div>
                             </div>
-                        </form>
+
+                            <!-- Button trigger modal Add Customer -->
+                            <button type="button" class="btn btn-primary mb-3"
+                                style="background-color: #008000; border: none;" data-bs-toggle="modal"
+                                data-bs-target="#customerSaveModal">
+                                <i class="fa-solid fa-user-plus" style="color: rgb(255, 255, 255);"></i>
+                                Add Customer
+                            </button>
+                        </div>
+
+                        <!-- Customer Table -->
                         <div class="table-responsive">
-                            <table class="table table-light table-hover" id="orderCart">
+                            <table class="table table-light table-hover" id="customerTable">
                                 <thead style="background-color: #F8F9FA; color: black;">
                                     <tr>
-                                        <th>Item Code</th>
-                                        <th>Item Name</th>
-                                        <th>Unit Price</th>
-                                        <th>Ordered Qty</th>
-                                        <th>Total</th>
+                                        <th class="w-25">Customer ID</th>
+                                        <th class="w-25">Name</th>
+                                        <th class="w-25">Address</th>
+                                        <th class="w-15">Salary</th>
+                                        <th class="w-10">Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody id="placeOrderTableBody">
+                                <tbody id="customerTableBody">
                                     <tr>
-                                        <td>I00-001</td>
-                                        <td>Ice-cream</td>
-                                        <td>150.00</td>
-                                        <td>5</td>
-                                        <td>750.00</td>
+                                        <td>C001</td>
+                                        <td>John</td>
+                                        <td>Colombo</td>
+                                        <td>50000</td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary fs-6 p-1"
+                                                id="btnUpdateCustomer" data-bs-toggle="modal"
+                                                data-bs-target="#customerUpdateModal"> Update
+                                            </button>
+
+                                            <button type="button" id="btnDeleteCustomer"
+                                                class="btn btn-sm btn-danger fs-6 rounded-3"> Delete </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>C002</td>
+                                        <td>Sanduni</td>
+                                        <td>Galle</td>
+                                        <td>40000</td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary fs-6 p-1"
+                                                id="btnUpdateCustomer" data-bs-toggle="modal"
+                                                data-bs-target="#customerUpdateModal"> Update
+                                            </button>
+
+                                            <button type="button" id="btnDeleteCustomer"
+                                                class="btn btn-sm btn-danger fs-6 rounded-3"> Delete </button>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <div class="card-footer" style="background-color: white;">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <ul class="list-group list-group-flush mt-4">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        Sub Total:
-                                        <span id="subTotalPrice" class="fw-bold">0.00</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center ">
-                                        Discount:
-                                        <span id="discountAmount" class="fw-bold">0.00</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center h1">
-                                        Total:
-                                        <span id="totalPrice" class="fw-bold">0.00</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-6 mt-4">
-                                <div class="mb-2">
-                                    <label for="discountInput" class="form-label">Discount (%)</label>
-                                    <input type="number" id="discountInput" class="form-control"
-                                        placeholder="Enter discount" style="border:1px solid #92BDD3;">
-                                    <span class="form-text text-danger" id="discountError"></span>
-                                </div>
-                                <div class="mb-2">
-                                    <label for="cashInput" class="form-label">Cash</label>
-                                    <input type="number" id="cashInput" class="form-control"
-                                        placeholder="Enter cash amount" style="border:1px solid #92BDD3;">
-                                    <span class="form-text text-danger" id="cashError"></span>
+                </div>
 
-                                </div>
-                                <div class="mb-2">
-                                    <label for="balanceInput" class="form-label">Balance</label>
-                                    <input type="text" id="balanceInput" class="form-control" placeholder="0.00"
-                                        readonly style="border:1px solid #92BDD3;">
-                                </div>
-                                <div class="text-end mt-2">
-                                    <button type="button" id="btnPlaceOrder" class="btn btn-success btn-lg">
-                                        <i class="fas fa-check-circle"></i> Place Order
+            </section>
+
+            <section class="tab-pane fade" id="pills-item" role="tabpanel" aria-labelledby="pills-item-tab"
+                tabindex="0">
+
+                <div class="row p-4 d-flex flex-column" style="background-color: #DBE9F0;">
+
+                    <div class="col">
+                        <!-- Search Bar -->
+                        <div class="d-flex justify-content-between">
+                            <div class="col-md-6 col-lg-4 col-xl-4 mb-3 ">
+                                <div class="input-group gap-2">
+                                    <div class="form-outline flex-fill">
+                                        <input type="search" id="form2" class="form-control"
+                                            placeholder="Search Item by ID" />
+                                    </div>
+                                    <button type="button" id="itemSearchButton"
+                                        class="btn btn-primary bg-dark border-dark" data-db-ripple-init>
+                                        Search
                                     </button>
                                 </div>
                             </div>
+
+                            <!-- Button trigger modal Add Item -->
+                            <button type="button" class="btn btn-primary mb-3"
+                                style="background-color: #008000; border: none;" data-bs-toggle="modal"
+                                data-bs-target="#itemSaveModal">
+                                <i class="fa-solid fa-plus" style="color: rgb(255, 255, 255);"></i>
+                                Add Item
+                            </button>
+                        </div>
+
+                        <!-- Item Table -->
+                        <div class="table-responsive">
+                            <table class="table table-light table-hover" id="itemTable">
+                                <thead style="background-color: #F8F9FA; color: black;">
+                                    <tr>
+                                        <th class="w-25">Item Code</th>
+                                        <th class="w-25">Item Name</th>
+                                        <th class="w-25">Quantity</th>
+                                        <th class="w-15">Unit Price</th>
+                                        <th class="w-10">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="itemTableBody">
+                                    <tr>
+                                        <td>I001</td>
+                                        <td>Ice-cream</td>
+                                        <td>100</td>
+                                        <td>150</td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary fs-6 p-1" id="btnUpdateItem"
+                                                data-bs-toggle="modal" data-bs-target="#itemUpdateModal"> Update
+                                            </button>
+
+                                            <button type="button" id="btnDeleteItem"
+                                                class="btn btn-sm btn-danger fs-6 rounded-3"> Delete </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>I002</td>
+                                        <td>Chocolate</td>
+                                        <td>50</td>
+                                        <td>200</td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary fs-6 p-1" id="btnUpdateItem"
+                                                data-bs-toggle="modal" data-bs-target="#itemUpdateModal"> Update
+                                            </button>
+
+                                            <button type="button" id="btnDeleteItem"
+                                                class="btn btn-sm btn-danger fs-6 rounded-3"> Delete </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
 
-                <!-- Order Details Card -->
-                <div class="container my-4">
-                    <div class="card shadow-sm">
+            </section>
+
+            <section class="tab-pane fade" id="pills-order" role="tabpanel" aria-labelledby="pills-order-tab"
+                tabindex="0" style="background-color: #3A7592;">
+                <div class="container py-4">
+                    <!-- Place Order Card -->
+                    <div class="card shadow-sm mb-4">
                         <div class="card-header text-white" style="background-color: #1D3A49;">
-                            <h4 class="mb-0">
-                                <i class="fas fa-search"></i> Order Details
-                            </h4>
+                            <h3 class="mb-0">
+                                <i class="fas fa-shopping-cart"></i> Place Order
+                            </h3>
                         </div>
                         <div class="card-body">
-                            <div class="input-group mb-3 d-flex justify-content-end">
-                                <div class="col-md-6 col-lg-4 col-xl-4 mb-3 ">
-                                    <div class="input-group gap-2">
-                                        <div class="form-outline flex-fill">
-                                            <input type="search" id="form3" class="form-control"
-                                                placeholder="Search Order by Order ID" />
-                                        </div>
-                                        <button type="button" id="orderSearchButton"
-                                            class="btn btn-primary bg-dark border-dark" data-db-ripple-init>
-                                            Search
+                            <form id="orderForm" novalidate>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="orderId" class="form-label">Order ID</label>
+                                        <input type="text" id="orderId" name="orderId" class="form-control"
+                                            placeholder="OID-001" readonly>
+                                        <div class="invalid-feedback" id="orderIdError"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="o_inputOrderDate" class="form-label">Order Date</label>
+                                        <input type="date" id="o_inputOrderDate" name="o_inputOrderDate"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label for="orderCustomerId" class="form-label">Customer ID</label>
+                                        <select class="form-select" id="orderCustomerId">
+                                            <option value="">Select Customer</option>
+                                            <option value="C00-001">C00-001</option>
+                                            <option value="C00-002">C00-002</option>
+                                            <option value="C00-003">C00-003</option>
+                                        </select>
+                                        <div class="invalid-feedback" id="orderCustomerIdError"></div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="orderCustomerName" class="form-label">Customer Name</label>
+                                        <input type="text" id="orderCustomerName" name="orderCustomerName"
+                                            class="form-control" placeholder="Customer Name" readonly>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="orderCustomerAddress" class="form-label">Customer Address</label>
+                                        <input type="text" id="orderCustomerAddress" name="orderCustomerAddress"
+                                            class="form-control" placeholder="Customer Address" readonly>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row mb-3 align-items-end">
+                                    <div class="col-md-4">
+                                        <label for="orderItemCode" class="form-label">Item Code</label>
+                                        <select class="form-select" id="orderItemCode">
+                                            <option value="">Select Item</option>
+                                            <option value="I00-001">I00-001</option>
+                                            <option value="I00-002">I00-002</option>
+                                            <option value="I00-003">I00-003</option>
+                                        </select>
+                                        <div class="invalid-feedback" id="orderItemCodeError"></div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="orderItemName" class="form-label">Item Name</label>
+                                        <input type="text" id="orderItemName" name="orderItemName" class="form-control"
+                                            placeholder="Item Name" readonly>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="orderItemQty" class="form-label">Available Qty</label>
+                                        <input type="number" id="orderItemQty" name="orderItemQty" class="form-control"
+                                            placeholder="Qty" readonly>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="orderItemPrice" class="form-label">Unit Price</label>
+                                        <input type="number" id="orderItemPrice" name="orderItemPrice"
+                                            class="form-control" placeholder="Price" readonly>
+                                    </div>
+                                </div>
+                                <div class="row mb-3 align-items-end">
+                                    <div class="col-md-4">
+                                        <label for="orderQty" class="form-label">Ordered Qty</label>
+                                        <input type="number" id="orderQty" name="orderQty" class="form-control"
+                                            placeholder="Enter Qty" required>
+                                        <span class="form-text text-danger" id="itemQtyError"></span>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="button" id="btnAddToCart"
+                                            class="btn btn-warning w-90 mt-4 rounded-3">
+                                            <i class="fas fa-cart-plus"></i> Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="table-responsive">
+                                <table class="table table-light table-hover" id="orderCart">
+                                    <thead style="background-color: #F8F9FA; color: black;">
+                                        <tr>
+                                            <th>Item Code</th>
+                                            <th>Item Name</th>
+                                            <th>Unit Price</th>
+                                            <th>Ordered Qty</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="placeOrderTableBody">
+                                        <!-- <tr>
+                                        <td>I00-001</td>
+                                        <td>Ice-cream</td>
+                                        <td>150.00</td>
+                                        <td>5</td>
+                                        <td>750.00</td>
+                                    </tr> -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer" style="background-color: white;">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="list-group list-group-flush mt-4">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            Sub Total:
+                                            <span id="subTotalPrice" class="fw-bold">0.00</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center ">
+                                            Discount:
+                                            <span id="discountAmount" class="fw-bold">0.00</span>
+                                        </li>
+                                        <li
+                                            class="list-group-item d-flex justify-content-between align-items-center h1">
+                                            Total:
+                                            <span id="totalPrice" class="fw-bold">0.00</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6 mt-4">
+                                    <div class="mb-2">
+                                        <label for="discountInput" class="form-label">Discount (%)</label>
+                                        <input type="number" id="discountInput" class="form-control"
+                                            placeholder="Enter discount" style="border:1px solid #92BDD3;">
+                                        <span class="form-text text-danger" id="discountError"></span>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="cashInput" class="form-label">Cash</label>
+                                        <input type="number" id="cashInput" class="form-control"
+                                            placeholder="Enter cash amount" style="border:1px solid #92BDD3;">
+                                        <span class="form-text text-danger" id="cashError"></span>
+
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="balanceInput" class="form-label">Balance</label>
+                                        <input type="text" id="balanceInput" class="form-control" placeholder="0.00"
+                                            readonly style="border:1px solid #92BDD3;">
+                                    </div>
+                                    <div class="text-end mt-2">
+                                        <button type="button" id="btnPlaceOrder" class="btn btn-success btn-lg">
+                                            <i class="fas fa-check-circle"></i> Place Order
                                         </button>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
 
-
-                            <div id="ordersList">
-                                <div class="table-responsive">
-                                    <table class="table table-light table-hover" id="orderDetailsTable">
-                                        <thead style="background-color: #F8F9FA; color: black;">
-                                            <tr>
-                                                <th class="w-25">Order ID</th>
-                                                <th class="w-25">Customer Name</th>
-                                                <th class="w-25">Order Date</th>
-                                                <th class="w-15">Total</th>
-                                                <th class="w-10">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="orderDetailsTableBody">
-                                            <tr>
-                                                <td>OID-001</td>
-                                                <td>John</td>
-                                                <td>2026-03-10</td>
-                                                <td>1500.00</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-primary fs-6 p-1"
-                                                        id="btnUpdateOrderDetails" data-bs-toggle="modal"
-                                                        data-bs-target="#orderDetailsUpdateModal"> Update </button>
-
-                                                    <button type="button" id="btnDeleteOrderDetails"
-                                                        class="btn btn-sm btn-danger fs-6 rounded-3"> Delete </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                    <!-- Order Details Card -->
+                    <div class="container my-4">
+                        <div class="card shadow-sm">
+                            <div class="card-header text-white" style="background-color: #1D3A49;">
+                                <h4 class="mb-0">
+                                    <i class="fas fa-search"></i> Order Details
+                                </h4>
                             </div>
+                            <div class="card-body">
+                                <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="col-md-6 col-lg-4 col-xl-4 mb-3 ">
+                                        <div class="input-group gap-2">
+                                            <div class="form-outline flex-fill">
+                                                <input type="search" id="form3" class="form-control"
+                                                    placeholder="Search Order by Order ID" />
+                                            </div>
+                                            <button type="button" id="orderSearchButton"
+                                                class="btn btn-primary bg-dark border-dark" data-db-ripple-init>
+                                                Search
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
 
+
+                                <div id="ordersList">
+                                    <div class="table-responsive">
+                                        <table class="table table-light table-hover" id="orderDetailsTable">
+                                            <thead style="background-color: #F8F9FA; color: black;">
+                                                <tr>
+                                                    <th class="w-25">Order ID</th>
+                                                    <th class="w-25">Customer Name</th>
+                                                    <th class="w-25">Order Date</th>
+                                                    <th class="w-15">Total</th>
+                                                    <th class="w-10">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="orderDetailsTableBody">
+                                                <tr>
+                                                    <td>OID-001</td>
+                                                    <td>John</td>
+                                                    <td>2026-03-10</td>
+                                                    <td>1500.00</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-primary fs-6 p-1"
+                                                            id="btnUpdateOrderDetails" data-bs-toggle="modal"
+                                                            data-bs-target="#orderDetailsUpdateModal"> Update </button>
+
+                                                        <button type="button" id="btnDeleteOrderDetails"
+                                                            class="btn btn-sm btn-danger fs-6 rounded-3"> Delete
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Add Customer Modal -->
+            <div class="modal fade" id="customerSaveModal" tabindex="-1" aria-labelledby="customerSaveModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="color: white;">
+                            <h1 class="modal-title fs-5" id="customerSaveModalLabel">Add New Customer</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                style="background-color: white;"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="registrationForm" novalidate>
+                                <div class="mb-3">
+                                    <label for="customerId" class="form-label">Customer ID</label>
+                                    <input type="text" id="customerId" name="customerId" class="form-control"
+                                        placeholder="C00-001" required>
+                                    <span class="form-text text-danger" id="customerIdError"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="customerName" class="form-label">Customer Name</label>
+                                    <input type="text" id="customerName" name="customerName" class="form-control"
+                                        placeholder="John Doe" required>
+                                    <span class="form-text text-danger" id="customerNameError"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="customerAddress" class="form-label">Customer Address</label>
+                                    <input type="text" id="customerAddress" name="customerAddress" class="form-control"
+                                        placeholder="Colombo" required>
+                                    <span class="form-text text-danger" id="customerAddressError"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="customerSalary" class="form-label">Customer Salary</label>
+                                    <input type="number" id="customerSalary" name="customerSalary" class="form-control"
+                                        placeholder="50000.00" required>
+                                    <span class="form-text text-danger" id="customerSalaryError"></span>
+                                </div>
+                                <div class="btn-container justify-content-center">
+                                    <!-- <button type="submit" id="btnSaveCustomer"
+                                                class="btn btn-success col-4">Save</button> -->
+                                    <button type="reset" id="btnRestForm" class="btn btn-secondary col-4">Clear
+                                        All</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" id="btnSaveCustomer" class="btn btn-success col-4">Save
+                                Customer</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-        </section>
-
-        <!-- Add Customer Modal -->
-        <div class="modal fade" id="customerSaveModal" tabindex="-1" aria-labelledby="customerSaveModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header" style="color: white;">
-                        <h1 class="modal-title fs-5" id="customerSaveModalLabel">Add New Customer</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                            style="background-color: white;"></button>
+            <!-- Update Customer Modal -->
+            <div class="modal fade" id="customerUpdateModal" tabindex="-1" aria-labelledby="customerUpdateModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="color: white;">
+                            <h1 class="modal-title fs-5" id="customerUpdateModalLabel">Update Customer</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                style="background-color: white;"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="updateForm" novalidate>
+                                <div class="mb-3">
+                                    <label for="updateCustomerId" class="form-label">Customer ID</label>
+                                    <input type="text" id="updateCustomerId" name="customerId" class="form-control"
+                                        placeholder="C00-001" required>
+                                    <span class="form-text text-danger" id="updateCustomerIdError"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="updateCustomerName" class="form-label">Customer Name</label>
+                                    <input type="text" id="updateCustomerName" name="customerName" class="form-control"
+                                        placeholder="John Doe" required>
+                                    <span class="form-text text-danger" id="updateCustomerNameError"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="updateCustomerAddress" class="form-label">Customer Address</label>
+                                    <input type="text" id="updateCustomerAddress" name="customerAddress"
+                                        class="form-control" placeholder="Colombo" required>
+                                    <span class="form-text text-danger" id="updateCustomerAddressError"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="updateCustomerSalary" class="form-label">Customer Salary</label>
+                                    <input type="number" id="updateCustomerSalary" name="customerSalary"
+                                        class="form-control" placeholder="50000.00" required>
+                                    <span class="form-text text-danger" id="updateCustomerSalaryError"></span>
+                                </div>
+                                <div class="btn-container justify-content-center">
+                                    <button type="reset" id="btnRestFormUpdate" class="btn btn-secondary col-4">Clear
+                                        All</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" id="btnUpdateCustomerForm" class="btn btn-success col-4">Update
+                                Customer</button>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <form id="registrationForm" novalidate>
-                            <div class="mb-3">
-                                <label for="customerId" class="form-label">Customer ID</label>
-                                <input type="text" id="customerId" name="customerId" class="form-control"
-                                    placeholder="C00-001" required>
-                                <span class="form-text text-danger" id="customerIdError"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="customerName" class="form-label">Customer Name</label>
-                                <input type="text" id="customerName" name="customerName" class="form-control"
-                                    placeholder="John Doe" required>
-                                <span class="form-text text-danger" id="customerNameError"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="customerAddress" class="form-label">Customer Address</label>
-                                <input type="text" id="customerAddress" name="customerAddress" class="form-control"
-                                    placeholder="Colombo" required>
-                                <span class="form-text text-danger" id="customerAddressError"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="customerSalary" class="form-label">Customer Salary</label>
-                                <input type="number" id="customerSalary" name="customerSalary" class="form-control"
-                                    placeholder="50000.00" required>
-                                <span class="form-text text-danger" id="customerSalaryError"></span>
-                            </div>
-                            <div class="btn-container justify-content-center">
-                                <!-- <button type="submit" id="btnSaveCustomer"
+                </div>
+            </div>
+
+            <!-- Add Item Modal -->
+            <div class="modal fade" id="itemSaveModal" tabindex="-1" aria-labelledby="itemSaveModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="color: white;">
+                            <h1 class="modal-title fs-5" id="itemSaveModalLabel">Add New Item</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                style="background-color: white;"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="itemRegistrationForm" novalidate>
+                                <div class="mb-3">
+                                    <label for="itemId" class="form-label">Item Code</label>
+                                    <input type="text" id="itemId" name="itemId" class="form-control"
+                                        placeholder="I00-001" required>
+                                    <span class="form-text text-danger" id="itemIdError"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="itemName" class="form-label">Item Name</label>
+                                    <input type="text" id="itemName" name="itemName" class="form-control"
+                                        placeholder="Ice-cream" required>
+                                    <span class="form-text text-danger" id="itemNameError"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="quantity" class="form-label">Quantity</label>
+                                    <input type="text" id="quantity" name="quantity" class="form-control"
+                                        placeholder="100" required>
+                                    <span class="form-text text-danger" id="quantityError"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="unitPrice" class="form-label">Unit Price</label>
+                                    <input type="number" id="unitPrice" name="unitPrice" class="form-control"
+                                        placeholder="150.00" required>
+                                    <span class="form-text text-danger" id="unitPriceError"></span>
+                                </div>
+                                <div class="btn-container justify-content-center">
+                                    <!-- <button type="submit" id="btnSaveCustomer"
                                                 class="btn btn-success col-4">Save</button> -->
-                                <button type="reset" id="btnRestForm" class="btn btn-secondary col-4">Clear
-                                    All</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" id="btnSaveCustomer" class="btn btn-success col-4">Save Customer</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Update Customer Modal -->
-        <div class="modal fade" id="customerUpdateModal" tabindex="-1" aria-labelledby="customerUpdateModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header" style="color: white;">
-                        <h1 class="modal-title fs-5" id="customerUpdateModalLabel">Update Customer</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                            style="background-color: white;"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="updateForm" novalidate>
-                            <div class="mb-3">
-                                <label for="updateCustomerId" class="form-label">Customer ID</label>
-                                <input type="text" id="updateCustomerId" name="customerId" class="form-control"
-                                    placeholder="C00-001" required>
-                                <span class="form-text text-danger" id="updateCustomerIdError"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="updateCustomerName" class="form-label">Customer Name</label>
-                                <input type="text" id="updateCustomerName" name="customerName" class="form-control"
-                                    placeholder="John Doe" required>
-                                <span class="form-text text-danger" id="updateCustomerNameError"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="updateCustomerAddress" class="form-label">Customer Address</label>
-                                <input type="text" id="updateCustomerAddress" name="customerAddress"
-                                    class="form-control" placeholder="Colombo" required>
-                                <span class="form-text text-danger" id="updateCustomerAddressError"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="updateCustomerSalary" class="form-label">Customer Salary</label>
-                                <input type="number" id="updateCustomerSalary" name="customerSalary"
-                                    class="form-control" placeholder="50000.00" required>
-                                <span class="form-text text-danger" id="updateCustomerSalaryError"></span>
-                            </div>
-                            <div class="btn-container justify-content-center">
-                                <button type="reset" id="btnRestFormUpdate" class="btn btn-secondary col-4">Clear
-                                    All</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" id="btnUpdateCustomerForm" class="btn btn-success col-4">Update
-                            Customer</button>
+                                    <button type="reset" id="btnRestItemForm" class="btn btn-secondary col-4">Clear
+                                        All</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" id="btnSaveItem" class="btn btn-success col-4">Save Item</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Add Item Modal -->
-        <div class="modal fade" id="itemSaveModal" tabindex="-1" aria-labelledby="itemSaveModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header" style="color: white;">
-                        <h1 class="modal-title fs-5" id="itemSaveModalLabel">Add New Item</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                            style="background-color: white;"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="itemRegistrationForm" novalidate>
-                            <div class="mb-3">
-                                <label for="itemId" class="form-label">Item Code</label>
-                                <input type="text" id="itemId" name="itemId" class="form-control" placeholder="I00-001"
-                                    required>
-                                <span class="form-text text-danger" id="itemIdError"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="itemName" class="form-label">Item Name</label>
-                                <input type="text" id="itemName" name="itemName" class="form-control"
-                                    placeholder="Ice-cream" required>
-                                <span class="form-text text-danger" id="itemNameError"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="quantity" class="form-label">Quantity</label>
-                                <input type="text" id="quantity" name="quantity" class="form-control" placeholder="100"
-                                    required>
-                                <span class="form-text text-danger" id="quantityError"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="unitPrice" class="form-label">Unit Price</label>
-                                <input type="number" id="unitPrice" name="unitPrice" class="form-control"
-                                    placeholder="150.00" required>
-                                <span class="form-text text-danger" id="unitPriceError"></span>
-                            </div>
-                            <div class="btn-container justify-content-center">
-                                <!-- <button type="submit" id="btnSaveCustomer"
-                                                class="btn btn-success col-4">Save</button> -->
-                                <button type="reset" id="btnRestItemForm" class="btn btn-secondary col-4">Clear
-                                    All</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" id="btnSaveItem" class="btn btn-success col-4">Save Item</button>
+            <!-- Update Item Modal -->
+            <div class="modal fade" id="itemUpdateModal" tabindex="-1" aria-labelledby="itemUpdateModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="color: white;">
+                            <h1 class="modal-title fs-5" id="itemUpdateModalLabel">Update Item</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                                style="background-color: white;"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="itemUpdateForm" novalidate>
+                                <div class="mb-3">
+                                    <label for="updateItemId" class="form-label">Item Code</label>
+                                    <input type="text" id="updateItemId" name="itemId" class="form-control"
+                                        placeholder="I00-001" required>
+                                    <span class="form-text text-danger" id="updateItemIdError"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="updateItemName" class="form-label">Item Name</label>
+                                    <input type="text" id="updateItemName" name="itemName" class="form-control"
+                                        placeholder="Ice-cream" required>
+                                    <span class="form-text text-danger" id="updateItemNameError"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="updateItemQuantity" class="form-label">Quantity</label>
+                                    <input type="text" id="updateItemQuantity" name="itemQuantity" class="form-control"
+                                        placeholder="100" required>
+                                    <span class="form-text text-danger" id="updateItemQuantityError"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="updateUnitPrice" class="form-label">Unit Price</label>
+                                    <input type="number" id="updateUnitPrice" name="itemUnitPrice" class="form-control"
+                                        placeholder="150.00" required>
+                                    <span class="form-text text-danger" id="updateUnitPriceError"></span>
+                                </div>
+                                <div class="btn-container justify-content-center">
+                                    <button type="reset" id="btnRestFormUpdateItem"
+                                        class="btn btn-secondary col-4">Clear
+                                        All</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" id="btnUpdateItemForm" class="btn btn-success col-4">Update
+                                Item</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
 
-        <!-- Update Item Modal -->
-        <div class="modal fade" id="itemUpdateModal" tabindex="-1" aria-labelledby="itemUpdateModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header" style="color: white;">
-                        <h1 class="modal-title fs-5" id="itemUpdateModalLabel">Update Item</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                            style="background-color: white;"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="itemUpdateForm" novalidate>
-                            <div class="mb-3">
-                                <label for="updateItemId" class="form-label">Item Code</label>
-                                <input type="text" id="updateItemId" name="itemId" class="form-control"
-                                    placeholder="I00-001" required>
-                                <span class="form-text text-danger" id="updateItemIdError"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="updateItemName" class="form-label">Item Name</label>
-                                <input type="text" id="updateItemName" name="itemName" class="form-control"
-                                    placeholder="Ice-cream" required>
-                                <span class="form-text text-danger" id="updateItemNameError"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="updateItemQuantity" class="form-label">Quantity</label>
-                                <input type="text" id="updateItemQuantity" name="itemQuantity" class="form-control"
-                                    placeholder="100" required>
-                                <span class="form-text text-danger" id="updateItemQuantityError"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label for="updateUnitPrice" class="form-label">Unit Price</label>
-                                <input type="number" id="updateUnitPrice" name="itemUnitPrice" class="form-control"
-                                    placeholder="150.00" required>
-                                <span class="form-text text-danger" id="updateUnitPriceError"></span>
-                            </div>
-                            <div class="btn-container justify-content-center">
-                                <button type="reset" id="btnRestFormUpdateItem" class="btn btn-secondary col-4">Clear
-                                    All</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" id="btnUpdateItemForm" class="btn btn-success col-4">Update Item</button>
-                    </div>
-                </div>
+        <footer class="footer">
+            <div class="container-fluid text-white text-center py-3" style="background-color: #0F1D24;">
+                <span>&copy; All Rights Reserved | Induni Palliyaguru</span>
             </div>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <div class="container-fluid text-white text-center py-3" style="background-color: #0F1D24;">
-            <span>&copy; All Rights Reserved | Induni Palliyaguru</span>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
