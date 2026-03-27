@@ -142,24 +142,25 @@
                     <!-- Search Bar -->
                     <div class="d-flex justify-content-between">
                         <div class="col-md-6 col-lg-4 col-xl-4 mb-3 ">
-                        <div class="input-group gap-2">
-                            <div class="form-outline flex-fill">
-                                <input type="search" id="form1" class="form-control"
-                                    placeholder="Search customer by ID" />
+                            <div class="input-group gap-2">
+                                <div class="form-outline flex-fill">
+                                    <input type="search" id="form1" class="form-control"
+                                        placeholder="Search customer by ID" />
+                                </div>
+                                <button type="button" id="searchButton" class="btn btn-primary bg-dark border-dark"
+                                    data-db-ripple-init>
+                                    Search
+                                </button>
                             </div>
-                            <button type="button" id="searchButton" class="btn btn-primary bg-dark border-dark"
-                                data-db-ripple-init>
-                                Search
-                            </button>
                         </div>
-                    </div>
 
-                    <!-- Button trigger modal Add Customer -->
-                    <button type="button" class="btn btn-primary mb-3" style="background-color: #008000; border: none;" data-bs-toggle="modal"
-                        data-bs-target="#customerSaveModal">
-                        <i class="fa-solid fa-user-plus" style="color: rgb(255, 255, 255);"></i>
-                        Add Customer
-                    </button>
+                        <!-- Button trigger modal Add Customer -->
+                        <button type="button" class="btn btn-primary mb-3"
+                            style="background-color: #008000; border: none;" data-bs-toggle="modal"
+                            data-bs-target="#customerSaveModal">
+                            <i class="fa-solid fa-user-plus" style="color: rgb(255, 255, 255);"></i>
+                            Add Customer
+                        </button>
                     </div>
 
                     <!-- Customer Table -->
@@ -181,8 +182,9 @@
                                     <td>Colombo</td>
                                     <td>50000</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary fs-6 p-1" id="btnUpdateCustomer" data-bs-toggle="modal"
-                                            data-bs-target="#customerUpdateModal"> Update </button>
+                                        <button type="button" class="btn btn-primary fs-6 p-1" id="btnUpdateCustomer"
+                                            data-bs-toggle="modal" data-bs-target="#customerUpdateModal"> Update
+                                        </button>
 
                                         <button type="button" id="btnDeleteCustomer"
                                             class="btn btn-sm btn-danger fs-6 rounded-3"> Delete </button>
@@ -194,8 +196,9 @@
                                     <td>Galle</td>
                                     <td>40000</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary fs-6 p-1" id="btnUpdateCustomer" data-bs-toggle="modal"
-                                            data-bs-target="#customerUpdateModal"> Update </button>
+                                        <button type="button" class="btn btn-primary fs-6 p-1" id="btnUpdateCustomer"
+                                            data-bs-toggle="modal" data-bs-target="#customerUpdateModal"> Update
+                                        </button>
 
                                         <button type="button" id="btnDeleteCustomer"
                                             class="btn btn-sm btn-danger fs-6 rounded-3"> Delete </button>
@@ -217,24 +220,25 @@
                     <!-- Search Bar -->
                     <div class="d-flex justify-content-between">
                         <div class="col-md-6 col-lg-4 col-xl-4 mb-3 ">
-                        <div class="input-group gap-2">
-                            <div class="form-outline flex-fill">
-                                <input type="search" id="form2" class="form-control"
-                                    placeholder="Search Item by ID" />
+                            <div class="input-group gap-2">
+                                <div class="form-outline flex-fill">
+                                    <input type="search" id="form2" class="form-control"
+                                        placeholder="Search Item by ID" />
+                                </div>
+                                <button type="button" id="itemSearchButton" class="btn btn-primary bg-dark border-dark"
+                                    data-db-ripple-init>
+                                    Search
+                                </button>
                             </div>
-                            <button type="button" id="itemSearchButton" class="btn btn-primary bg-dark border-dark"
-                                data-db-ripple-init>
-                                Search
-                            </button>
                         </div>
-                    </div>
 
-                    <!-- Button trigger modal Add Item -->
-                    <button type="button" class="btn btn-primary mb-3" style="background-color: #008000; border: none;" data-bs-toggle="modal"
-                        data-bs-target="#itemSaveModal">
-                        <i class="fa-solid fa-plus" style="color: rgb(255, 255, 255);"></i>
-                        Add Item
-                    </button>
+                        <!-- Button trigger modal Add Item -->
+                        <button type="button" class="btn btn-primary mb-3"
+                            style="background-color: #008000; border: none;" data-bs-toggle="modal"
+                            data-bs-target="#itemSaveModal">
+                            <i class="fa-solid fa-plus" style="color: rgb(255, 255, 255);"></i>
+                            Add Item
+                        </button>
                     </div>
 
                     <!-- Customer Table -->
@@ -256,8 +260,8 @@
                                     <td>100</td>
                                     <td>150</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary fs-6 p-1" id="btnUpdateItem" data-bs-toggle="modal"
-                                            data-bs-target="#itemUpdateModal"> Update </button>
+                                        <button type="button" class="btn btn-primary fs-6 p-1" id="btnUpdateItem"
+                                            data-bs-toggle="modal" data-bs-target="#itemUpdateModal"> Update </button>
 
                                         <button type="button" id="btnDeleteItem"
                                             class="btn btn-sm btn-danger fs-6 rounded-3"> Delete </button>
@@ -269,8 +273,8 @@
                                     <td>50</td>
                                     <td>200</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary fs-6 p-1" id="btnUpdateItem" data-bs-toggle="modal"
-                                            data-bs-target="#itemUpdateModal"> Update </button>
+                                        <button type="button" class="btn btn-primary fs-6 p-1" id="btnUpdateItem"
+                                            data-bs-toggle="modal" data-bs-target="#itemUpdateModal"> Update </button>
 
                                         <button type="button" id="btnDeleteItem"
                                             class="btn btn-sm btn-danger fs-6 rounded-3"> Delete </button>
@@ -285,18 +289,33 @@
         </section>
 
         <section class="tab-pane fade" id="pills-order" role="tabpanel" aria-labelledby="pills-order-tab" tabindex="0">
-
-            Edit
+            <div class="container py-4">
+                <!-- Place Order Card -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header text-white" style="background-color: #1D3A49;">
+                        <h3 class="mb-0">
+                            <i class="fas fa-shopping-cart"></i> Place Order
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="orderForm" novalidate>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
 
         </section>
 
         <!-- Add Customer Modal -->
-        <div class="modal fade" id="customerSaveModal" tabindex="-1" aria-labelledby="customerSaveModalLabel" aria-hidden="true">
+        <div class="modal fade" id="customerSaveModal" tabindex="-1" aria-labelledby="customerSaveModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header" style="color: white;">
                         <h1 class="modal-title fs-5" id="customerSaveModalLabel">Add New Customer</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: white;"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            style="background-color: white;"></button>
                     </div>
                     <div class="modal-body">
                         <form id="registrationForm" novalidate>
@@ -340,12 +359,14 @@
         </div>
 
         <!-- Update Customer Modal -->
-        <div class="modal fade" id="customerUpdateModal" tabindex="-1" aria-labelledby="customerUpdateModalLabel" aria-hidden="true">
+        <div class="modal fade" id="customerUpdateModal" tabindex="-1" aria-labelledby="customerUpdateModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header" style="color: white;">
                         <h1 class="modal-title fs-5" id="customerUpdateModalLabel">Update Customer</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: white;"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            style="background-color: white;"></button>
                     </div>
                     <div class="modal-body">
                         <form id="updateForm" novalidate>
@@ -363,14 +384,14 @@
                             </div>
                             <div class="mb-3">
                                 <label for="updateCustomerAddress" class="form-label">Customer Address</label>
-                                <input type="text" id="updateCustomerAddress" name="customerAddress" class="form-control"
-                                    placeholder="Colombo" required>
+                                <input type="text" id="updateCustomerAddress" name="customerAddress"
+                                    class="form-control" placeholder="Colombo" required>
                                 <span class="form-text text-danger" id="updateCustomerAddressError"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="updateCustomerSalary" class="form-label">Customer Salary</label>
-                                <input type="number" id="updateCustomerSalary" name="customerSalary" class="form-control"
-                                    placeholder="50000.00" required>
+                                <input type="number" id="updateCustomerSalary" name="customerSalary"
+                                    class="form-control" placeholder="50000.00" required>
                                 <span class="form-text text-danger" id="updateCustomerSalaryError"></span>
                             </div>
                             <div class="btn-container justify-content-center">
@@ -380,26 +401,29 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" id="btnUpdateCustomerForm" class="btn btn-success col-4">Update Customer</button>
+                        <button type="submit" id="btnUpdateCustomerForm" class="btn btn-success col-4">Update
+                            Customer</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Add Item Modal -->
-        <div class="modal fade" id="itemSaveModal" tabindex="-1" aria-labelledby="itemSaveModalLabel" aria-hidden="true">
+        <div class="modal fade" id="itemSaveModal" tabindex="-1" aria-labelledby="itemSaveModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header" style="color: white;">
                         <h1 class="modal-title fs-5" id="itemSaveModalLabel">Add New Item</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: white;"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            style="background-color: white;"></button>
                     </div>
                     <div class="modal-body">
                         <form id="itemRegistrationForm" novalidate>
                             <div class="mb-3">
                                 <label for="itemId" class="form-label">Item Code</label>
-                                <input type="text" id="itemId" name="itemId" class="form-control"
-                                    placeholder="I00-001" required>
+                                <input type="text" id="itemId" name="itemId" class="form-control" placeholder="I00-001"
+                                    required>
                                 <span class="form-text text-danger" id="itemIdError"></span>
                             </div>
                             <div class="mb-3">
@@ -410,8 +434,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="quantity" class="form-label">Quantity</label>
-                                <input type="text" id="quantity" name="quantity" class="form-control"
-                                    placeholder="100" required>
+                                <input type="text" id="quantity" name="quantity" class="form-control" placeholder="100"
+                                    required>
                                 <span class="form-text text-danger" id="quantityError"></span>
                             </div>
                             <div class="mb-3">
@@ -436,12 +460,14 @@
         </div>
 
         <!-- Update Item Modal -->
-        <div class="modal fade" id="itemUpdateModal" tabindex="-1" aria-labelledby="itemUpdateModalLabel" aria-hidden="true">
+        <div class="modal fade" id="itemUpdateModal" tabindex="-1" aria-labelledby="itemUpdateModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header" style="color: white;">
                         <h1 class="modal-title fs-5" id="itemUpdateModalLabel">Update Item</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: white;"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            style="background-color: white;"></button>
                     </div>
                     <div class="modal-body">
                         <form id="itemUpdateForm" novalidate>
