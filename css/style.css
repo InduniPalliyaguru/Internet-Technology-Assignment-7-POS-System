@@ -159,3 +159,27 @@ background-color: #0F1D24;
 #btnUpdateItemForm:hover {
     background-color: rgba(255, 166, 0, 0.682);
 }
+
+/* Place Order */
+
+.list-group-item {
+    background-color: #EDF4F8;
+    margin-bottom: 1%;
+    border: none;
+}
+
+#form3 {
+    background-color: transparent;
+    border: 1px solid black;
+}
+
+#btnUpdateOrderDetails {
+    background-color: orange;
+    border: none;
+    color: black;
+    transition: background-color, 0.2s;
+}
+
+#btnUpdateOrderDetails:hover {
+    background-color: rgba(255, 166, 0, 0.682);
+}

@@ -58,6 +58,7 @@
     </div>
 
     <main class="tab-content" id="pills-tabContent">
+        
         <section class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
             tabindex="0">
             <div class="container-fluid d-flex flex-column" style="background-color: #2C576D;">
@@ -241,7 +242,7 @@
                         </button>
                     </div>
 
-                    <!-- Customer Table -->
+                    <!-- Item Table -->
                     <div class="table-responsive">
                         <table class="table table-light table-hover" id="itemTable">
                             <thead style="background-color: #F8F9FA; color: black;">
@@ -288,7 +289,8 @@
 
         </section>
 
-        <section class="tab-pane fade" id="pills-order" role="tabpanel" aria-labelledby="pills-order-tab" tabindex="0">
+        <section class="tab-pane fade" id="pills-order" role="tabpanel" aria-labelledby="pills-order-tab" tabindex="0"
+            style="background-color: #3A7592;">
             <div class="container py-4">
                 <!-- Place Order Card -->
                 <div class="card shadow-sm mb-4">
@@ -299,8 +301,211 @@
                     </div>
                     <div class="card-body">
                         <form id="orderForm" novalidate>
-                            
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="orderId" class="form-label">Order ID</label>
+                                    <input type="text" id="orderId" name="orderId" class="form-control"
+                                        placeholder="OID-001" readonly>
+                                    <div class="invalid-feedback" id="orderIdError"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="o_inputOrderDate" class="form-label">Order Date</label>
+                                    <input type="date" id="o_inputOrderDate" name="o_inputOrderDate"
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="orderCustomerId" class="form-label">Customer ID</label>
+                                    <select class="form-select" id="orderCustomerId">
+                                        <option value="">Select Customer</option>
+                                        <option value="C00-001">C00-001</option>
+                                        <option value="C00-002">C00-002</option>
+                                        <option value="C00-003">C00-003</option>
+                                    </select>
+                                    <div class="invalid-feedback" id="orderCustomerIdError"></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="orderCustomerName" class="form-label">Customer Name</label>
+                                    <input type="text" id="orderCustomerName" name="orderCustomerName"
+                                        class="form-control" placeholder="Customer Name" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="orderCustomerAddress" class="form-label">Customer Address</label>
+                                    <input type="text" id="orderCustomerAddress" name="orderCustomerAddress"
+                                        class="form-control" placeholder="Customer Address" readonly>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row mb-3 align-items-end">
+                                <div class="col-md-4">
+                                    <label for="orderItemCode" class="form-label">Item Code</label>
+                                    <select class="form-select" id="orderItemCode">
+                                        <option value="">Select Item</option>
+                                        <option value="I00-001">I00-001</option>
+                                        <option value="I00-002">I00-002</option>
+                                        <option value="I00-003">I00-003</option>
+                                    </select>
+                                    <div class="invalid-feedback" id="orderItemCodeError"></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="orderItemName" class="form-label">Item Name</label>
+                                    <input type="text" id="orderItemName" name="orderItemName" class="form-control"
+                                        placeholder="Item Name" readonly>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="orderItemQty" class="form-label">Available Qty</label>
+                                    <input type="number" id="orderItemQty" name="orderItemQty" class="form-control"
+                                        placeholder="Qty" readonly>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="orderItemPrice" class="form-label">Unit Price</label>
+                                    <input type="number" id="orderItemPrice" name="orderItemPrice" class="form-control"
+                                        placeholder="Price" readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-3 align-items-end">
+                                <div class="col-md-4">
+                                    <label for="orderQty" class="form-label">Ordered Qty</label>
+                                    <input type="number" id="orderQty" name="orderQty" class="form-control"
+                                        placeholder="Enter Qty" required>
+                                    <span class="form-text text-danger" id="itemQtyError"></span>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" id="btnAddToCart" class="btn btn-warning w-90 mt-4 rounded-3">
+                                        <i class="fas fa-cart-plus"></i> Add to Cart
+                                    </button>
+                                </div>
+                            </div>
                         </form>
+                        <div class="table-responsive">
+                            <table class="table table-light table-hover" id="orderCart">
+                                <thead style="background-color: #F8F9FA; color: black;">
+                                    <tr>
+                                        <th>Item Code</th>
+                                        <th>Item Name</th>
+                                        <th>Unit Price</th>
+                                        <th>Ordered Qty</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="placeOrderTableBody">
+                                    <tr>
+                                        <td>I00-001</td>
+                                        <td>Ice-cream</td>
+                                        <td>150.00</td>
+                                        <td>5</td>
+                                        <td>750.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer" style="background-color: white;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="list-group list-group-flush mt-4">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Sub Total:
+                                        <span id="subTotalPrice" class="fw-bold">0.00</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center ">
+                                        Discount:
+                                        <span id="discountAmount" class="fw-bold">0.00</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center h1">
+                                        Total:
+                                        <span id="totalPrice" class="fw-bold">0.00</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 mt-4">
+                                <div class="mb-2">
+                                    <label for="discountInput" class="form-label">Discount (%)</label>
+                                    <input type="number" id="discountInput" class="form-control"
+                                        placeholder="Enter discount" style="border:1px solid #92BDD3;">
+                                    <span class="form-text text-danger" id="discountError"></span>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="cashInput" class="form-label">Cash</label>
+                                    <input type="number" id="cashInput" class="form-control"
+                                        placeholder="Enter cash amount" style="border:1px solid #92BDD3;">
+                                    <span class="form-text text-danger" id="cashError"></span>
+
+                                </div>
+                                <div class="mb-2">
+                                    <label for="balanceInput" class="form-label">Balance</label>
+                                    <input type="text" id="balanceInput" class="form-control" placeholder="0.00"
+                                        readonly style="border:1px solid #92BDD3;">
+                                </div>
+                                <div class="text-end mt-2">
+                                    <button type="button" id="btnPlaceOrder" class="btn btn-success btn-lg">
+                                        <i class="fas fa-check-circle"></i> Place Order
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Details Card -->
+                <div class="container my-4">
+                    <div class="card shadow-sm">
+                        <div class="card-header text-white" style="background-color: #1D3A49;">
+                            <h4 class="mb-0">
+                                <i class="fas fa-search"></i> Order Details
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="input-group mb-3 d-flex justify-content-end">
+                                <div class="col-md-6 col-lg-4 col-xl-4 mb-3 ">
+                                    <div class="input-group gap-2">
+                                        <div class="form-outline flex-fill">
+                                            <input type="search" id="form3" class="form-control"
+                                                placeholder="Search Order by Order ID" />
+                                        </div>
+                                        <button type="button" id="orderSearchButton"
+                                            class="btn btn-primary bg-dark border-dark" data-db-ripple-init>
+                                            Search
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div id="ordersList">
+                                <div class="table-responsive">
+                                    <table class="table table-light table-hover" id="orderDetailsTable">
+                                        <thead style="background-color: #F8F9FA; color: black;">
+                                            <tr>
+                                                <th class="w-25">Order ID</th>
+                                                <th class="w-25">Customer Name</th>
+                                                <th class="w-25">Order Date</th>
+                                                <th class="w-15">Total</th>
+                                                <th class="w-10">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="orderDetailsTableBody">
+                                            <tr>
+                                                <td>OID-001</td>
+                                                <td>John</td>
+                                                <td>2026-03-10</td>
+                                                <td>1500.00</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-primary fs-6 p-1"
+                                                        id="btnUpdateOrderDetails" data-bs-toggle="modal"
+                                                        data-bs-target="#orderDetailsUpdateModal"> Update </button>
+
+                                                    <button type="button" id="btnDeleteOrderDetails"
+                                                        class="btn btn-sm btn-danger fs-6 rounded-3"> Delete </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
