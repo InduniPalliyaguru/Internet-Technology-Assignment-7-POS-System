@@ -50,25 +50,62 @@ $(document).ready(function () {
         resetForm();
     });
 
+    $("#btnUpdateCustomerForm").on("click", function (e) {
+        e.preventDefault();
+
+        const isValid =
+            validateCustomerField($("#updateCustomerId"), CUS_ID_REGEX, $("#updateCustomerIdError"), "Format: C00-001") &&
+            validateCustomerField($("#updateCustomerName"), CUS_NAME_REGEX, $("#updateCustomerNameError"), "Min 4 characters Max 20") &&
+            validateCustomerField($("#updateCustomerAddress"), CUS_ADDRESS_REGEX, $("#updateCustomerAddressError"), "Min 5 characters Max 20") &&
+            validateCustomerField($("#updateCustomerSalary"), CUS_SALARY_REGEX, $("#updateCustomerSalaryError"), "Format: 100 or 100.00")
+
+        if (!isValid) {
+            return;
+        }
+
+        console.log("isvalid"+ isValid);
+
+        updateCustomer();
+    });
+
+    $(document).on("click", ".btn-update", function () {
+        const row = $(this).closest("tr");
+
+        const id = row.find("td:eq(0)").text();
+        const name = row.find("td:eq(1)").text();
+        const address = row.find("td:eq(2)").text();
+        const salary = row.find("td:eq(3)").text();
+
+        $("#updateCustomerId").val(id);
+        $("#updateCustomerName").val(name);
+        $("#updateCustomerAddress").val(address);
+        $("#updateCustomerSalary").val(salary);
+    });
+
 
     // Functions
 
-    function addToTable(customerDB) {
+    function addToTable(customer) {
         const newRow = `
-        <tr>
-          <td>${customerDB.customerId}</td>
-          <td>${customerDB.customerName}</td>
-          <td>${customerDB.customerAddress}</td>
-          <td>${customerDB.customerSalary}</td>
-          <td>
-           <button type="button" class="btn btn-primary fs-6 p-1"
-            id="btnUpdateCustomer" data-bs-toggle="modal"
-            data-bs-target="#customerUpdateModal">Update</button>
+    <tr>
+      <td>${customer.customerId}</td>
+      <td>${customer.customerName}</td>
+      <td>${customer.customerAddress}</td>
+      <td>${customer.customerSalary}</td>
+      <td>
+        <button type="button" class="btn btn-primary fs-6 p-1 btn-update"
+            data-bs-toggle="modal"
+            data-bs-target="#customerUpdateModal">
+            Update
+        </button>
 
-           <button type="button" id="btnDeleteCustomer"
-            class="btn btn-sm btn-danger fs-6 rounded-3">Delete</button>
-          </td>
-        </tr>`;
+        <button type="button" class="btn btn-sm btn-danger fs-6 rounded-3 btn-delete">
+            Delete
+        </button>
+        </td>
+    </tr>
+    `;
+
         $("#customerTable tbody").append(newRow);
     }
 
@@ -97,6 +134,35 @@ $(document).ready(function () {
         }
     }
 
+    function updateCustomer() {
+        const id = $("#updateCustomerId").val();
+        const name = $("#updateCustomerName").val();
+        const address = $("#updateCustomerAddress").val();
+        const salary = $("#updateCustomerSalary").val();
+
+        const customer = new Customer(id, name, address, salary);
+
+        console.log(customer);
+        const customerIndex = customerDB.findIndex(function (c) {
+           return c.customerId === customer.customerId;
+        });
+
+        console.log(customerIndex);
+        if (customerIndex === -1) {
+            alert("Customer not found!", "warning");
+            return;
+        }
+
+        if (confirm('Do you really need to update this Customer...?')) {
+
+            customerDB[customerIndex] = customer;
+            
+            getAllCustomers();
+            alert("Customer update successfully!");
+            resetUpdateForm();
+        }
+    }
+
     function existCustomer(id) {
         return customerDB.some(function (customer) {
             return customer.customerId === id;
@@ -107,6 +173,11 @@ $(document).ready(function () {
         $("#registrationForm")[0].reset();
         resetValidation("#registrationForm");
         $("#btnSaveCustomer").prop("disabled", true);
+    }
+
+    function resetUpdateForm() {
+        $("#updateForm")[0].reset();
+        resetValidation("#updateForm");
     }
 
 });

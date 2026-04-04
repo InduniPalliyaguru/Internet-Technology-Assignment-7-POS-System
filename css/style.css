@@ -78,15 +78,21 @@ header img {
     background-color: green;
 }
 
-#btnUpdateCustomer {
+.btn-update {
     background-color: #ffa500;
     border: none;
     color: black;
     transition: background-color, 0.2s;
 }
 
-#btnUpdateCustomer:hover {
+.btn-update:hover {
     background-color: rgba(255, 166, 0, 0.682);
+    color: black;
+}
+
+.btn-update:active {
+    background-color: #ffa500;
+    color: black;
 }
 
 #updateForm {
