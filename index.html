@@ -14,7 +14,7 @@
 
 <body>
 
-    <div class="login-page p-5">
+    <div class="login-page p-5" style="display: none;">
 
         <div class="container col-4 p-5 mt-5 mb-5" id="login">
             <div class="d-flex justify-content-center">
@@ -46,7 +46,7 @@
         </div>
     </div>
 
-    <div class="main-App" style="display: none;">
+    <div class="main-App" >
         <header>
             <nav class="navbar navbar-expand-lg custom-navbar" style="padding: 0.2%;">
                 <div class="container-fluid">
@@ -592,8 +592,6 @@
                                     <span class="form-text text-danger" id="customerSalaryError"></span>
                                 </div>
                                 <div class="btn-container justify-content-center">
-                                    <!-- <button type="submit" id="btnSaveCustomer"
-                                                class="btn btn-success col-4">Save</button> -->
                                     <button type="reset" id="btnRestForm" class="btn btn-secondary col-4">Clear
                                         All</button>
                                 </div>
@@ -776,6 +774,9 @@
 
     <script src="controller/LoginController.js"></script>
     <script src="controller/validations/LoginValidation.js"></script>
+
+    <script src="controller/CustomerController.js"></script>
+    <script src="controller/validations/CustomerValidation.js"></script>
 
 </body>
 
