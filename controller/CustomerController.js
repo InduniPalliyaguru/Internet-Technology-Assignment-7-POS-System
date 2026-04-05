@@ -63,9 +63,30 @@ $(document).ready(function () {
             return;
         }
 
-        console.log("isvalid"+ isValid);
+        console.log("isvalid" + isValid);
 
         updateCustomer();
+    });
+
+    $(document).on("click", ".btn-delete", function () {
+        let customerId = $(this).closest("tr").find("td:eq(0)").text();
+        deleteCustomer(customerId);
+    });
+
+    $("#customerTableBody").on("dblclick", "tr", function () {
+        let customerId = $(this).find("td:eq(0)").text();
+        deleteCustomer(customerId);
+
+    });
+
+    $("#btnRestFormUpdate").on("click", function (e) {
+        e.preventDefault();
+        resetUpdateForm();
+    });
+
+    $("#btnRestForm").on("click", function (e) {
+        e.preventDefault();
+        resetForm();
     });
 
     $(document).on("click", ".btn-update", function () {
@@ -82,8 +103,25 @@ $(document).ready(function () {
         $("#updateCustomerSalary").val(salary);
     });
 
+    $("#searchButton").on("click", function (e) {
+        let searchTerm = $("#form1").val().toLowerCase();
+
+        let filteredCustomers = customerDB.filter(function (customer) {
+            return customer.customerId.toLowerCase().includes(searchTerm);
+        });
+
+        renderTable(filteredCustomers);
+    });
+
 
     // Functions
+
+    function renderTable(customers) {
+        $("#customerTableBody").empty();
+        customers.forEach(function (customer) {
+            addToTable(customer);
+        });
+    }
 
     function addToTable(customer) {
         const newRow = `
@@ -144,7 +182,7 @@ $(document).ready(function () {
 
         console.log(customer);
         const customerIndex = customerDB.findIndex(function (c) {
-           return c.customerId === customer.customerId;
+            return c.customerId === customer.customerId;
         });
 
         console.log(customerIndex);
@@ -156,10 +194,28 @@ $(document).ready(function () {
         if (confirm('Do you really need to update this Customer...?')) {
 
             customerDB[customerIndex] = customer;
-            
+
             getAllCustomers();
             alert("Customer update successfully!");
             resetUpdateForm();
+        }
+    }
+
+    function deleteCustomer(id) {
+        let result = confirm("Are you sure you want to remove this customer?");
+
+        if (result) {
+            let index = customerDB.findIndex(function (e) {
+                return e.customerId === id;
+            });
+
+            if (index !== -1) {
+                customerDB.splice(index, 1);
+                alert("Customer deleted successfully!");
+                getAllCustomers();
+            } else {
+                alert("Customer not removed");
+            }
         }
     }
 
