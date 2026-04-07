@@ -17,6 +17,6 @@ function validateItemField(input, regex, errorElement, message) {
     }
 }
 
-function resetValidation(formSelector) {
+function resetItemValidation(formSelector) {
     $(formSelector).find(".form-control").removeClass("is-valid is-invalid");
 }
