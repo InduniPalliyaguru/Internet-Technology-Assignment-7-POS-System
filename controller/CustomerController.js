@@ -180,7 +180,6 @@ $(document).ready(function () {
 
         const customer = new Customer(id, name, address, salary);
 
-        console.log(customer);
         const customerIndex = customerDB.findIndex(function (c) {
             return c.customerId === customer.customerId;
         });

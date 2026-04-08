@@ -56,6 +56,11 @@ $(document).ready(function () {
         resetItemForm();
     });
 
+    $("#btnRestFormUpdateItem").on("click", function (e) {
+        e.preventDefault();
+        resetUpdateItemForm();
+    });
+
     $(document).on("click", "#btnDeleteItem", function () {
         let itemCode = $(this).closest("tr").find("td:eq(0)").text();
         deleteItem(itemCode);
@@ -83,7 +88,38 @@ $(document).ready(function () {
         updateItem();
     });
 
+    $(document).on("click", "#btnUpdateItem", function () {
+        const row = $(this).closest("tr");
+
+        const id = row.find("td:eq(0)").text();
+        const name = row.find("td:eq(1)").text();
+        const qty = row.find("td:eq(2)").text();
+        const price = row.find("td:eq(3)").text();
+
+        $("#updateItemId").val(id);
+        $("#updateItemName").val(name);
+        $("#updateItemQuantity").val(qty);
+        $("#updateUnitPrice").val(price);
+    });
+
+    $("#itemSearchButton").on("click", function (e) {
+        let searchTerm = $("#form2").val().toLowerCase();
+
+        let filteredItems = itemDB.filter(function (item) {
+            return item.itemCode.toLowerCase().includes(searchTerm);
+        });
+
+        renderItemTable(filteredItems);
+    });
+
     // Functions
+
+    function renderItemTable(items) {
+        $("#itemTableBody").empty();
+        items.forEach(function (item) {
+            addToItemTable(item);
+        });
+    }
 
     function addToItemTable(item) {
         const newRow = `
@@ -142,6 +178,11 @@ $(document).ready(function () {
         $("#btnSaveItem").prop("disabled", true);
     }
 
+    function resetUpdateItemForm() {
+        $("#itemUpdateForm")[0].reset();
+        resetItemValidation("#itemUpdateForm");
+    }
+
     function existItem(id) {
         return itemDB.some(function (item) {
             return item.itemCode === id;
@@ -167,7 +208,30 @@ $(document).ready(function () {
     }
 
     function updateItem() {
+        const id = $("#updateItemId").val();
+        const name = $("#updateItemName").val();
+        const qty = $("#updateItemQuantity").val();
+        const price = $("#updateUnitPrice").val();
 
+        const item = new Item(id, name, qty, price);
+
+        const itemIndex = itemDB.findIndex(function (i) {
+            return i.itemCode === item.itemCode;
+        });
+
+        if (itemIndex === -1) {
+            alert("Item not found!", "warning");
+            return;
+        }
+
+        if (confirm('Do you really need to update this Item...?')) {
+
+            itemDB[itemIndex] = item;
+
+            getAllItems();
+            alert("Item update successfully!");
+            resetUpdateItemForm();
+        }
     }
 
 });
