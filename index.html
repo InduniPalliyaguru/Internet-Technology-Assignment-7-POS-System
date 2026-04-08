@@ -564,7 +564,7 @@
                                 <div class="mb-3">
                                     <label for="updateCustomerId" class="form-label">Customer ID</label>
                                     <input type="text" id="updateCustomerId" name="customerId" class="form-control"
-                                        placeholder="C00-001" required disabled>
+                                        placeholder="C00-001" required readonly>
                                     <span class="form-text text-danger" id="updateCustomerIdError"></span>
                                 </div>
                                 <div class="mb-3">
@@ -663,7 +663,7 @@
                                 <div class="mb-3">
                                     <label for="updateItemId" class="form-label">Item Code</label>
                                     <input type="text" id="updateItemId" name="itemId" class="form-control"
-                                        placeholder="I00-001" required disabled>
+                                        placeholder="I00-001" required readonly>
                                     <span class="form-text text-danger" id="updateItemIdError"></span>
                                 </div>
                                 <div class="mb-3">
@@ -724,6 +724,10 @@
     <script src="controller/ItemController.js"></script>
     <script src="controller/validations/ItemValidation.js"></script>
     <script src="modal/Item.js"></script>
+
+    <script src="controller/OrdersController.js"></script>
+    <script src="controller/validations/OrdersValidation.js"></script>
+    <script src="modal/Orders.js"></script>
 
 </body>
 
