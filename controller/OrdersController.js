@@ -131,6 +131,13 @@ $(document).ready(function () {
         updateTotals();
     });
 
+    $("#discountInput").on("keyup change", function() {
+        const value = $(this).val().trim();
+        if(validateDiscount(value)) {
+            
+        }
+    });
+
     // Functions
 
     function getNextOrderID() {
@@ -152,6 +159,17 @@ $(document).ready(function () {
     }
 
     function updateTotals() {
+        let subTotal = 0;
+        $("#placeOrderTableBody tr").each(function () {
+            const rowTotal = parseFloat($(this).find("td:eq(4)").text());
+            subTotal += rowTotal;
+        });
+        $("#subTotalPrice").text(subTotal.toFixed(2));
+        $("#discountAmount").text("0.00");
+        $("#totalPrice").text(subTotal.toFixed(2));
+    }
+
+    function validateDiscount(discount) {
 
     }
 
