@@ -1,4 +1,5 @@
-class Item {
+
+export class Item {
     constructor(itemCode, itemName, itemQty, unitPrice) {
         this.itemCode = itemCode;
         this.itemName = itemName;

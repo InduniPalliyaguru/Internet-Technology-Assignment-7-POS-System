@@ -1,4 +1,4 @@
-
+import { USER } from "../db/DB.js";
 $(document).ready(function () {
 
     $("#loginButton").on("click", function () {

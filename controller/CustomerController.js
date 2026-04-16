@@ -1,3 +1,6 @@
+import { customerDB } from "../db/DB.js";
+import { Customer } from "../modal/Customer.js";
+import { loadCustomerDropDown } from "./OrdersController.js";
 
 $(document).ready(function () {
 
@@ -169,6 +172,7 @@ $(document).ready(function () {
 
             customerDB.push(customer);
             getAllCustomers();
+            loadCustomerDropDown();
             alert("Customer saved successfully!");
         }
     }
@@ -196,6 +200,7 @@ $(document).ready(function () {
             customerDB[customerIndex] = customer;
 
             getAllCustomers();
+            loadCustomerDropDown();
             alert("Customer update successfully!");
             resetUpdateForm();
         }
@@ -213,6 +218,7 @@ $(document).ready(function () {
                 customerDB.splice(index, 1);
                 alert("Customer deleted successfully!");
                 getAllCustomers();
+                loadCustomerDropDown();
             } else {
                 alert("Customer not removed");
             }

@@ -1,3 +1,7 @@
+import { itemDB } from "../db/DB.js";
+import { Item } from "../modal/Item.js";
+import { loadItemDropDown } from "./OrdersController.js";
+
 $(document).ready(function () {
 
     getAllItems();
@@ -168,6 +172,7 @@ $(document).ready(function () {
 
             itemDB.push(item);
             getAllItems();
+            loadItemDropDown();
             alert("Item Saved succeccfully!");
         }
     }
@@ -201,6 +206,7 @@ $(document).ready(function () {
                 itemDB.splice(index, 1);
                 alert("Item deleted successfully!");
                 getAllItems();
+                loadItemDropDown();
             } else {
                 alert("Item not removed");
             }
@@ -229,6 +235,7 @@ $(document).ready(function () {
             itemDB[itemIndex] = item;
 
             getAllItems();
+            loadItemDropDown();
             alert("Item update successfully!");
             resetUpdateItemForm();
         }

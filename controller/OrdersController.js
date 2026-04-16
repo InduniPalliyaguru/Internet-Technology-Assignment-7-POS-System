@@ -1,3 +1,20 @@
+import { itemDB, customerDB, ordersDB } from "../db/DB.js";
+
+export function loadCustomerDropDown() {
+    const $customerSelect = $("#orderCustomerId");
+    $customerSelect.empty().append('<option value="">Select Customer</option>');
+    customerDB.forEach(function (customer) {
+        $customerSelect.append(`<option value="${customer.customerId}">${customer.customerId}</option>`);
+    });
+}
+
+export function loadItemDropDown() {
+    const $itemSelect = $("#orderItemCode");
+    $itemSelect.empty().append('<option value="">Select Item</option>');
+    itemDB.forEach(function (item) {
+        $itemSelect.append(`<option value="${item.itemCode}">${item.itemCode}</option>`);
+    });
+}
 
 $(document).ready(function () {
 
@@ -102,10 +119,10 @@ $(document).ready(function () {
             $("#placeOrderTableBody").append(newRow);
         }
 
-        const item = itemDB.find(function(item) {
+        const item = itemDB.find(function (item) {
             return item.itemCode === itemCode;
         });
-        if(item) {
+        if (item) {
             item.itemQty -= orderedQty;
         }
 
@@ -115,22 +132,6 @@ $(document).ready(function () {
     });
 
     // Functions
-
-    function loadCustomerDropDown() {
-        const $customerSelect = $("#orderCustomerId");
-        $customerSelect.empty().append('<option value="">Select Customer</option>');
-        customerDB.forEach(function (customer) {
-            $customerSelect.append(`<option value="${customer.customerId}">${customer.customerId}</option>`);
-        });
-    }
-
-    function loadItemDropDown() {
-        const $itemSelect = $("#orderItemCode");
-        $itemSelect.empty().append('<option value="">Select Item</option>');
-        itemDB.forEach(function (item) {
-            $itemSelect.append(`<option value="${item.itemCode}">${item.itemCode}</option>`);
-        });
-    }
 
     function getNextOrderID() {
         if (ordersDB.length === 0) return "OID-001";
