@@ -131,11 +131,36 @@ $(document).ready(function () {
         updateTotals();
     });
 
-    $("#discountInput").on("keyup change", function() {
+    $("#discountInput").on("keyup change", function () {
         const value = $(this).val().trim();
-        if(validateDiscount(value)) {
-            
+        if (validateDiscount(value)) {
+            $(this).removeClass("is-invalid").addClass("is-valid");
+            $("#discountError").text("");
+        } else {
+            $(this).removeClass("is-valid").addClass("is-invalid");
+            $("#discountError").text("Enter a valid discount (0 - 100)");
         }
+        updateBalance();
+    });
+
+    $("#cashInput").on("keyup change", function () {
+      const value = $(this).val().trim();
+      const total = parseFloat($("#totalPrice").text()) || 0;
+      const cash = parseFloat(value);
+  
+      if (validateCash(cash)) {
+        if (cash <= total) {
+          $(this).removeClass("is-valid").addClass("is-invalid");
+          $("#cashError").text("Insufficient cash. Must be greater than total.");
+        } else {
+          $(this).removeClass("is-invalid").addClass("is-valid");
+          $("#cashError").text("");
+        }
+      } else {
+        $(this).removeClass("is-valid").addClass("is-invalid");
+        $("#cashError").text("Enter a valid cash amount");
+      }
+      updateBalance();
     });
 
     // Functions
@@ -171,6 +196,32 @@ $(document).ready(function () {
 
     function validateDiscount(discount) {
 
+        if (discount < 0 || discount > 100) {
+            return false;
+        }
+        return true;
+
+    }
+
+    function updateBalance() {
+        let subTotal = parseFloat($("#subTotalPrice").text());
+        let discount = parseFloat($("#discountInput").val()) || 0;
+        let cash = parseFloat($("#cashInput").val()) || 0;
+
+        const discountAmount = subTotal * (discount / 100);
+        const finalTotal = subTotal - discountAmount;
+        const balance = cash - finalTotal;
+
+        $("#discountAmount").text(discountAmount.toFixed(2));
+        $("#totalPrice").text(finalTotal.toFixed(2));
+        $("#balanceInput").val(balance.toFixed(2));
+    }
+
+    function validateCash(cash) {
+      if (isNaN(cash) || cash < 0) {
+          return false;
+      }
+      return true; 
     }
 
 });
