@@ -1,4 +1,5 @@
 import { itemDB, customerDB, ordersDB } from "../db/DB.js";
+import { Order } from "../modal/Orders.js";
 
 export function loadCustomerDropDown() {
     const $customerSelect = $("#orderCustomerId");
@@ -144,23 +145,64 @@ $(document).ready(function () {
     });
 
     $("#cashInput").on("keyup change", function () {
-      const value = $(this).val().trim();
-      const total = parseFloat($("#totalPrice").text()) || 0;
-      const cash = parseFloat(value);
-  
-      if (validateCash(cash)) {
-        if (cash <= total) {
-          $(this).removeClass("is-valid").addClass("is-invalid");
-          $("#cashError").text("Insufficient cash. Must be greater than total.");
+        const value = $(this).val().trim();
+        const total = parseFloat($("#totalPrice").text()) || 0;
+        const cash = parseFloat(value);
+
+        if (validateCash(cash)) {
+            if (cash < total) {
+                $(this).removeClass("is-valid").addClass("is-invalid");
+                $("#cashError").text("Insufficient cash. Must be greater than total.");
+            } else {
+                $(this).removeClass("is-invalid").addClass("is-valid");
+                $("#cashError").text("");
+            }
         } else {
-          $(this).removeClass("is-invalid").addClass("is-valid");
-          $("#cashError").text("");
+            $(this).removeClass("is-valid").addClass("is-invalid");
+            $("#cashError").text("Enter a valid cash amount");
         }
-      } else {
-        $(this).removeClass("is-valid").addClass("is-invalid");
-        $("#cashError").text("Enter a valid cash amount");
-      }
-      updateBalance();
+        updateBalance();
+    });
+
+    $("#orderQty").on("keyup", function () {
+        validateQtyWhileTyping(
+            $(this),
+            $("#itemQtyError"),
+            "Please enter a valid ordered quantity."
+        );
+    });
+
+    $("#btnPlaceOrder").on("click", function () {
+        const discount = parseFloat($("#discountInput").val());
+        const cash = parseFloat($("#cashInput").val());
+        const total = parseFloat($("#totalPrice").text());
+
+        let hasError = false;
+
+        if (!validateDiscount(discount)) {
+            $("#discountError").text("Enter a valid discount (0 - 100)");
+            hasError = true;
+        } else {
+            $("#discountError").text("");
+        }
+
+        if (!validateCash(cash)) {
+            $("#cashError").text("Enter a valid cash amount");
+            hasError = true;
+        } else if (cash < total) {
+            $("#cashError").text("Insufficient cash. Must be greater than total.");
+            hasError = true;
+        } else {
+            $("#cashError").text("");
+        }
+
+        if (hasError) return;
+
+        const balance = cash - total;
+        $("#balanceInput").val(balance.toFixed(2));
+
+        saveOrder();
+        getAllOrders();
     });
 
     // Functions
@@ -218,10 +260,77 @@ $(document).ready(function () {
     }
 
     function validateCash(cash) {
-      if (isNaN(cash) || cash < 0) {
-          return false;
-      }
-      return true; 
+        if (isNaN(cash) || cash < 0) {
+            return false;
+        }
+        return true;
+    }
+
+    function validateQtyWhileTyping(input, errorField, errorMsg) {
+        const value = parseFloat(input.val());
+        if (isNaN(value) || value <= 0) {
+            errorField.text(errorMsg);
+            input.addClass("is-invalid");
+            return false;
+        } else {
+            errorField.text("");
+            input.removeClass("is-invalid");
+            return true;
+        }
+    }
+
+    function saveOrder() {
+        const orderId = $("#orderId").val();
+        const orderDate = $("#o_inputOrderDate").val();
+        const customerId = $('#orderCustomerId').val();
+        const discount = $("#discountInput").val();
+        const totalPrice = parseFloat($("#totalPrice").text());
+
+        const orderDetails = [];
+
+        $("#placeOrderTableBody tr").each(function () {
+            const itmCode = $(this).find("td:eq(0)").text();
+            const unitPrice = parseFloat($(this).find("td:eq(2)").text());
+            const qty = parseInt($(this).find("td:eq(3)").text(), 10);
+
+            orderDetails.push({ itmCode, unitPrice, qty });
+        });
+
+        if (confirm("Do you really want to place this order?")) {
+            const order = new Order(orderId, orderDate, customerId, discount, totalPrice, orderDetails);
+            ordersDB.push(order);
+            console.log(order);
+            alert("Order placed successfully!");
+
+            clearOrderForm();
+        }
+        getAllOrders();
+    }
+
+    function getAllOrders() {
+
+    }
+
+    function clearOrderForm() {
+        $("#orderCustomerId").val("");
+        $("#orderCustomerName").val("");
+        $("#orderCustomerAddress").val("");
+        $("#orderItemCode").val("");
+        $("#orderItemName").val("");
+        $("#orderItemQty").val("");
+        $("#orderItemPrice").val("");
+        $("#orderQty").val("");
+    
+        $("#placeOrderTableBody").empty();
+    
+        $("#subTotalPrice").text("0.00");
+        $("#discountInput").val("");
+        $("#discountAmount").text("0.00");
+        $("#totalPrice").text("0.00");
+        $("#cashInput").val("");
+        $("#balanceInput").val("");
+    
+        $("#orderId").val(getNextOrderID());
     }
 
 });
