@@ -1,5 +1,6 @@
 import { itemDB, customerDB, ordersDB } from "../db/DB.js";
 import { Order } from "../modal/Orders.js";
+import { updateDashboardMetrics } from "./DashboardController.js";
 
 export function loadCustomerDropDown() {
     const $customerSelect = $("#orderCustomerId");
@@ -223,7 +224,29 @@ $(document).ready(function () {
         clearOrderForm();
     });
 
+    $(document).on("click", "#btnDeletteOrderDetails", function () {
+        let orderId = $(this).closest("tr").find("td:eq(0)").text();
+        deleteOrder(orderId);
+    });
+
+    $("#orderSearchButton").on("click", function (e) {
+        let searchTerm = $("#form3").val().toLowerCase();
+
+        let filteredOrders = ordersDB.filter(function (order) {
+            return order.orderId.toLowerCase().includes(searchTerm);
+        });
+
+        renderOrderTable(filteredOrders);
+    });
+
     // Functions
+
+    function renderOrderTable(order) {
+        $("#orderDetailsTableBody").empty();
+        order.forEach(function (orders) {
+            addToTable(orders);
+        });
+    }
 
     function getNextOrderID() {
         if (ordersDB.length === 0) return "OID-001";
@@ -323,6 +346,7 @@ $(document).ready(function () {
             clearOrderForm();
         }
         getAllOrders();
+        updateDashboardMetrics();
     }
 
     function getAllOrders() {
@@ -342,7 +366,8 @@ $(document).ready(function () {
         class="btn btn-sm btn-view fs-6 rounded-3"> View
         </button>
 
-        <button type="button" class="btn btn-sm btn-danger fs-6 rounded-3 btn-delete">
+        <button type="button" id="btnDeletteOrderDetails" 
+        class="btn btn-sm btn-danger fs-6 rounded-3 ">
             Delete
         </button>
         </td>
@@ -454,6 +479,25 @@ $(document).ready(function () {
 
         $("#discountInput").prop("readonly", isReadonly);
         $("#cashInput").prop("readonly", isReadonly);
+    }
+
+    function deleteOrder(id) {
+        let result = confirm("Are you sure you want to remove this order Details?");
+
+        if (result) {
+            let index = ordersDB.findIndex(function (e) {
+                return e.orderId === id;
+            });
+
+            if (index !== -1) {
+                ordersDB.splice(index, 1);
+                alert("Order details deleted successfully!");
+                getAllOrders();
+            } else {
+                alert("Order details not removed");
+            }
+        }
+        updateDashboardMetrics();
     }
 
 });

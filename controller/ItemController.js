@@ -1,6 +1,7 @@
 import { itemDB } from "../db/DB.js";
 import { Item } from "../modal/Item.js";
 import { loadItemDropDown } from "./OrdersController.js";
+import { updateDashboardMetrics } from "./DashboardController.js";
 
 $(document).ready(function () {
 
@@ -174,6 +175,7 @@ $(document).ready(function () {
             getAllItems();
             loadItemDropDown();
             alert("Item Saved succeccfully!");
+            updateDashboardMetrics();
         }
     }
 
@@ -211,6 +213,7 @@ $(document).ready(function () {
                 alert("Item not removed");
             }
         }
+        updateDashboardMetrics();
     }
 
     function updateItem() {

@@ -1,6 +1,7 @@
 import { customerDB } from "../db/DB.js";
 import { Customer } from "../modal/Customer.js";
 import { loadCustomerDropDown } from "./OrdersController.js";
+import { updateDashboardMetrics } from "./DashboardController.js";
 
 $(document).ready(function () {
 
@@ -174,6 +175,7 @@ $(document).ready(function () {
             getAllCustomers();
             loadCustomerDropDown();
             alert("Customer saved successfully!");
+            updateDashboardMetrics();
         }
     }
 
@@ -223,6 +225,7 @@ $(document).ready(function () {
                 alert("Customer not removed");
             }
         }
+        updateDashboardMetrics();
     }
 
     function existCustomer(id) {
