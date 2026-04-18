@@ -180,15 +180,15 @@ header img {
     border: 1px solid black;
 }
 
-#btnUpdateOrderDetails {
-    background-color: orange;
+#btnViewOrderDetails {
+    background-color: black;
     border: none;
-    color: black;
+    color: white;
     transition: background-color, 0.2s;
 }
 
-#btnUpdateOrderDetails:hover {
-    background-color: rgba(255, 166, 0, 0.682);
+#btnViewOrderDetails:hover {
+    background-color: rgba(25, 25, 25, 0.682);
 }
 
 /* Login */

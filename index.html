@@ -375,13 +375,7 @@
                                         </tr>
                                     </thead>
                                     <tbody id="placeOrderTableBody">
-                                        <!-- <tr>
-                                        <td>I00-001</td>
-                                        <td>Ice-cream</td>
-                                        <td>150.00</td>
-                                        <td>5</td>
-                                        <td>750.00</td>
-                                    </tr> -->
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -424,10 +418,16 @@
                                         <input type="text" id="balanceInput" class="form-control" placeholder="0.00"
                                             readonly style="border:1px solid #92BDD3;">
                                     </div>
-                                    <div class="text-end mt-2">
+                                    <div class="text-end mt-2 d-flex flex-column gap-2">
+
                                         <button type="button" id="btnPlaceOrder" class="btn btn-success btn-lg">
                                             <i class="fas fa-check-circle"></i> Place Order
                                         </button>
+
+                                        <button type="reset" id="btnRestFormOrderDetails"
+                                        class="btn btn-secondary">Clear
+                                        All</button>
+
                                     </div>
                                 </div>
                             </div>
@@ -465,7 +465,7 @@
                                             <thead style="background-color: #F8F9FA; color: black;">
                                                 <tr>
                                                     <th class="w-25">Order ID</th>
-                                                    <th class="w-25">Customer Name</th>
+                                                    <th class="w-25">Customer ID</th>
                                                     <th class="w-25">Order Date</th>
                                                     <th class="w-15">Total</th>
                                                     <th class="w-10">Actions</th>
@@ -473,19 +473,7 @@
                                             </thead>
                                             <tbody id="orderDetailsTableBody">
                                                 <tr>
-                                                    <td>OID-001</td>
-                                                    <td>John</td>
-                                                    <td>2026-03-10</td>
-                                                    <td>1500.00</td>
-                                                    <td>
-                                                        <button type="button" class="btn btn-primary fs-6 p-1"
-                                                            id="btnUpdateOrderDetails" data-bs-toggle="modal"
-                                                            data-bs-target="#orderDetailsUpdateModal"> Update </button>
-
-                                                        <button type="button" id="btnDeleteOrderDetails"
-                                                            class="btn btn-sm btn-danger fs-6 rounded-3"> Delete
-                                                        </button>
-                                                    </td>
+                                                    
                                                 </tr>
                                             </tbody>
                                         </table>

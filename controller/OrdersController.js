@@ -24,6 +24,7 @@ $(document).ready(function () {
 
     $("#orderId").val(getNextOrderID());
 
+    getAllOrders();
     loadCustomerDropDown();
     loadItemDropDown();
 
@@ -205,6 +206,23 @@ $(document).ready(function () {
         getAllOrders();
     });
 
+    $(document).on("click", ".btn-view", function () {
+        const row = $(this).closest("tr");
+
+        const id = row.find("td:eq(0)").text();
+        console.log(id);
+
+        const order = ordersDB.find(function (orders) {
+            return orders.orderId === id;
+        });
+
+        fillOrderFormAtView(order);
+    });
+
+    $("#btnRestFormOrderDetails").on("click", function () {
+        clearOrderForm();
+    });
+
     // Functions
 
     function getNextOrderID() {
@@ -308,10 +326,36 @@ $(document).ready(function () {
     }
 
     function getAllOrders() {
+        $("#orderDetailsTableBody").empty();
+        ordersDB.forEach(addToTable);
+    }
 
+    function addToTable(order) {
+        const newRow = `
+    <tr>
+      <td>${order.orderId}</td>
+      <td>${order.customerId}</td>
+      <td>${order.orderDate}</td>
+      <td>${order.totalPrice}</td>
+      <td>
+        <button type="button" id="btnViewOrderDetails"
+        class="btn btn-sm btn-view fs-6 rounded-3"> View
+        </button>
+
+        <button type="button" class="btn btn-sm btn-danger fs-6 rounded-3 btn-delete">
+            Delete
+        </button>
+        </td>
+    </tr>
+    `;
+
+        $("#orderDetailsTableBody").append(newRow);
     }
 
     function clearOrderForm() {
+
+        setOrderFormReadonly(false);
+
         $("#orderCustomerId").val("");
         $("#orderCustomerName").val("");
         $("#orderCustomerAddress").val("");
@@ -320,17 +364,96 @@ $(document).ready(function () {
         $("#orderItemQty").val("");
         $("#orderItemPrice").val("");
         $("#orderQty").val("");
-    
+
         $("#placeOrderTableBody").empty();
-    
+
         $("#subTotalPrice").text("0.00");
         $("#discountInput").val("");
         $("#discountAmount").text("0.00");
         $("#totalPrice").text("0.00");
         $("#cashInput").val("");
         $("#balanceInput").val("");
-    
+
         $("#orderId").val(getNextOrderID());
+
+    }
+
+    function fillOrderFormAtView(order) {
+        $("#orderCustomerId").val(order.customerId);
+        const customer = customerDB.find(function (customers) {
+            return customers.customerId === order.customerId;
+        });
+
+        if (customer) {
+            $("#orderCustomerName").val(customer.customerName);
+            $("#orderCustomerAddress").val(customer.customerAddress);
+        } else {
+            $("#orderCustomerName").val("");
+            $("#orderCustomerAddress").val("");
+        }
+
+        $("#orderItemCode").val();
+        $("#orderItemName").val("");
+        $("#orderItemQty").val("");
+        $("#orderItemPrice").val("");
+        $("#orderQty").val("");
+
+        $("#placeOrderTableBody").empty();
+        const orderDetails = order.orderDetails;
+        orderDetails.forEach(function (details) {
+
+            console.log(details);
+            const item = itemDB.find(function (items) {
+                return items.itemCode === details.itmCode;
+            });
+
+            if (!item) {
+                console.error("Item not found:", details.itmCode);
+                return;
+            }
+
+            const qty = details.qty || details.orderedQty;
+
+            const newRow = `
+        <tr>
+            <td>${details.itmCode}</td>
+            <td>${item.itemName}</td>
+            <td>${item.unitPrice}</td>
+            <td>${qty}</td>
+            <td>${(item.unitPrice * qty).toFixed(2)}</td>
+        </tr>
+        `;
+
+            $("#placeOrderTableBody").append(newRow);
+        });
+
+        $("#subTotalPrice").text(order.totalPrice);
+        $("#discountInput").val(order.discount);
+        $("#discountAmount").text("");
+        $("#totalPrice").text(order.totalPrice);
+        $("#cashInput").val("");
+        $("#balanceInput").val("");
+
+        $("#orderId").val(order.orderId);
+
+        setOrderFormReadonly(true);
+    }
+
+    function setOrderFormReadonly(isReadonly) {
+
+        $("#orderCustomerId").prop("disabled", isReadonly);
+        $("#orderCustomerName").prop("readonly", isReadonly);
+        $("#orderCustomerAddress").prop("readonly", isReadonly);
+
+        $("#orderItemCode").prop("disabled", isReadonly);
+        $("#orderItemName").prop("readonly", isReadonly);
+        $("#orderItemQty").prop("readonly", isReadonly);
+        $("#orderItemPrice").prop("readonly", isReadonly);
+
+        $("#orderQty").prop("readonly", isReadonly);
+
+        $("#discountInput").prop("readonly", isReadonly);
+        $("#cashInput").prop("readonly", isReadonly);
     }
 
 });
