@@ -1,6 +1,7 @@
 import { itemDB, customerDB, ordersDB } from "../db/DB.js";
 import { Order } from "../modal/Orders.js";
 import { updateDashboardMetrics } from "./DashboardController.js";
+import { validateCash, validateDiscount, validateQtyWhileTyping } from "./validations/OrdersValidation.js";
 
 export function loadCustomerDropDown() {
     const $customerSelect = $("#orderCustomerId");
@@ -277,15 +278,6 @@ $(document).ready(function () {
         $("#totalPrice").text(subTotal.toFixed(2));
     }
 
-    function validateDiscount(discount) {
-
-        if (discount < 0 || discount > 100) {
-            return false;
-        }
-        return true;
-
-    }
-
     function updateBalance() {
         let subTotal = parseFloat($("#subTotalPrice").text());
         let discount = parseFloat($("#discountInput").val()) || 0;
@@ -298,26 +290,6 @@ $(document).ready(function () {
         $("#discountAmount").text(discountAmount.toFixed(2));
         $("#totalPrice").text(finalTotal.toFixed(2));
         $("#balanceInput").val(balance.toFixed(2));
-    }
-
-    function validateCash(cash) {
-        if (isNaN(cash) || cash < 0) {
-            return false;
-        }
-        return true;
-    }
-
-    function validateQtyWhileTyping(input, errorField, errorMsg) {
-        const value = parseFloat(input.val());
-        if (isNaN(value) || value <= 0) {
-            errorField.text(errorMsg);
-            input.addClass("is-invalid");
-            return false;
-        } else {
-            errorField.text("");
-            input.removeClass("is-invalid");
-            return true;
-        }
     }
 
     function saveOrder() {
